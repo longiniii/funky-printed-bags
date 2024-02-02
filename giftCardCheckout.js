@@ -1,0 +1,17 @@
+let checkout = document.getElementById('checkout')
+let header = document.getElementById('header2')
+checkout.style.marginTop = header.offsetHeight + 'px'
+let qQuantity = document.getElementById('q-quantity-text')
+let gcdPrice = document.getElementById('gcd-price')
+let gcdQuantity = document.getElementById('gcd-quantity')
+let gcdAmount = document.getElementById('gcd-amount')
+let satSubtotal = document.getElementById('sat-subtotal')
+let satTax = document.getElementById('sat-tax')
+let satTotal = document.getElementById('sat-total')
+qQuantity.innerText = `Order summary(${sessionStorage.getItem('quantity')})`
+gcdPrice.innerText = `$${sessionStorage.getItem('price')}`
+gcdQuantity.innerText = `Qty:${sessionStorage.getItem('quantity')}`
+gcdAmount.innerText = `$${sessionStorage.getItem('amount')}`
+satSubtotal.innerText = `$${sessionStorage.getItem('price')}`
+satTax.innerText = `$${Math.round(sessionStorage.getItem('price') / 12) / 10}`
+satTotal.innerText = `$${Number(satTax.innerText.slice(1)) + Number(satSubtotal.innerText.slice(1))}`
