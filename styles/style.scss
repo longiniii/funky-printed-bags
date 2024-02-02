@@ -2,8 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Sura', serif;
-}
+    font-family: 'Tilt Neon', sans-serif;}
 html {
     font-size: 12px;
     scroll-behavior: smooth;
@@ -100,9 +99,103 @@ html {
     }
 }
 #store {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-	grid-auto-rows: repeat(1fr);
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+	// grid-auto-rows: repeat(1fr);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 2rem;
+    .s-product {
+        height: 52rem;
+        width: 36rem;
+        display: flex;
+        flex-flow: column wrap;
+        .p-image-div {
+            flex: 3;
+            position: relative;
+            .id-top-seller {
+                z-index: 1;
+                position: absolute;
+                height: 2rem;
+                width: 7rem;
+                background-color: black;
+                color: white;
+                top: 3rem;
+                left: 3rem;
+                border-radius: 4px;
+                position: relative;
+                p {
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                    font-size: 1.15rem;
+                    white-space: nowrap;
+                }
+            }
+            .id-image {
+                position: absolute;
+                top: 0%;
+                height: 39rem;
+                width: 36rem;
+                object-fit: cover;
+                cursor: pointer;
+            }
+            .id-discount {
+                z-index: 1;
+                position: absolute;
+                height: 2rem;
+                width: 7rem;
+                background-color: black;
+                color: white;
+                font-size: 1rem;
+                top: 3rem;
+                right: 3rem;
+                border-radius: 4px;
+                p {
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                    font-size: 1.15rem;
+                    white-space: nowrap;
+                }
+            }
+        }
+        .p-text {
+            flex: 1;
+            position: relative;
+            .t-name {
+                position: absolute;
+                left: 50%;
+                top: 5%;
+                transform: translate(-50%,0);
+                font-size: 1.9rem;
+            }
+            .t-cost {
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%,0);
+                top: 25%;
+                font-size: 1.7rem;
+            }
+            .t-add {
+                display: none;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%,0);
+                top: 55%;
+                font-size: 1.5rem;
+                height: 3.3rem;
+                width: 10rem;
+                background-color: transparent;
+                border: 1px solid black;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+        }
+    }
 }
 #social {
     z-index: 30;
@@ -113,29 +206,61 @@ html {
     right: 1%;
     top: 50%;
 }
-#about {
+#time-left {
     width: 100%;
-    height: 40rem;
-    background-color: antiquewhite;
+    height: 50rem;
+    background-color: rgb(18, 18, 18);
+    // background-color: antiquewhite;
     position: relative;
-    #a-main {
+    #tl-main {
         position: absolute;
         left: 50%;
         top: 10%;
         transform: translate(-50%,0%);
-        font-size: 3.9rem;
-    }
-    #a-text {
-        position: absolute;
-        left: 50%;
-        top: 30%;
-        transform: translate(-50%,0%);
-        font-size: 2.6rem;
+        font-size: 6rem;
         text-align: center;
-        width: 34%;
-        line-height: 2.5rem;
-        letter-spacing: 0.2rem;
+        color: white;
+        span {
+            color: red;
+        }
     }
+    .tl-time {
+        position: absolute;
+        top: 65%;
+        height: 17rem;
+        width: 17rem;
+        transform: translate(-50%,0);
+        border: 1.8px solid white;
+        .t-time {
+            position: absolute;
+            font-size: 9.4rem;
+            left: 50%;
+            top: 40%;
+            transform: translate(-50%,-50%);
+            color: white;
+        }
+        .t-time-text {
+            position: absolute;
+            font-size: 1.55rem;
+            left: 50%;
+            top: 82%;
+            transform: translate(-50%,-50%);
+            color: white;
+        }
+    }
+    #tl-days {
+        left: 26%;
+    }
+    #tl-hours {
+        left: 42%;
+    }
+    #tl-minutes {
+        left: 58%;
+    }
+    #tl-seconds {
+        left: 74%;
+    }
+
 }
 
 
