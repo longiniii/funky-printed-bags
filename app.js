@@ -9,6 +9,11 @@ let productImage;
 let add;
 let discount;
 let topSeller;
+let timeLeft = document.getElementById('tl-main')
+let days = document.getElementById('d-days')
+let hours = document.getElementById('h-hours')
+let minutes = document.getElementById('m-minutes')
+let seconds = document.getElementById('s-seconds')
 let products = (d) => {
     d.forEach((item, index) => {
         store.innerHTML +=
@@ -52,3 +57,19 @@ let products = (d) => {
         });
     });
 }
+var countDownDate = new Date("Mar 03, 2024 00:00:000").getTime();
+
+let x = setInterval(function() {
+    let now = new Date().getTime();
+    let distance = countDownDate - now;
+    if (distance <= 0) {
+        timeLeft.innerText = 'THE BIGGEST SALE OF THE YEAR HAS BEGUN'
+        clearInterval(x)
+    } else {
+        days.innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+        hours.innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        minutes.innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        seconds.innerText = Math.floor((distance % (1000 * 60)) / 1000);
+        console.log(days + "d " + hours + "h " + minutes + "m " + seconds + "s ");
+    }
+}, 1000);
