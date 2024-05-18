@@ -1,0 +1,35 @@
+<header id="header">
+    <div id="left">
+        <a href="/"><h1 id="main-text">Twirly</h1></a>
+        <a href="/"><p id="description">Funky Printed Bags</p></a>
+    </div>
+    <nav id="nav">
+        <ul>
+            <li><a href="/">Shop</a></li>
+            <li><a href="/gift-card">Gift Card</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div id="right">
+        <input id="item-search" type="search" placeholder="search..." >
+        <div id="nav-product-search-results">
+            <h3>Trending products</h3>
+            {% for product in products %}
+            <a href="/product/{{product['id']}}">
+                <div id="nav-search-product">
+                    <div id="nav-search-product-image">
+                        <img src="{{product['images'][0]}}" alt="">
+                    </div>
+                    <div id="nav-search-product-information">
+                        <p id="nav-search-product-name">{{product['name']}}</p>
+                        <p id="nav-search-product-price">${{product['cost'] - 0.01}}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor%}
+        </div>
+        <button id="login">Log In</button>
+        <button id="nav-cart-open-button"><i class="fa-solid fa-cart-shopping"></i> Cart</button>
+    </div>
+</header>
+<div style="height: 9rem; width: 100%;background-color: red;" id="header-placeholder"></div>
