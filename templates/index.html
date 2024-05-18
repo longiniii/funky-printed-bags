@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block body %}
+<section id="store">
+    {% for product in products %}
+    <a href="/product/{{product['id']}}"><div class="product">
+        <div class="image-div">
+            {% if product['topSeller'] %}
+            <div class="top-seller"><p>Top Seller</p></div>
+            {% endif %}
+            <img class="product-image" src="{{product['images'][0]}}" alt="">
+            <img class="image-pattern" class="product-image" src="{{product['images_patterns'][0]}}" alt="">
+            {% if product['discount'] %}
+            <div class="discount"><p>Discount!!</p></div>
+            {% endif %}
+        </div>
+        <div class="text">
+            <p class="name">{{product['name']}}</p>
+            <p class="cost">${{product['cost'] - 0.01}}</p>
+            <button class="add">Add to Cart</button>
+        </div>
+    </div></a>
+    {% endfor %}
+</section>
+<section id="time-left">
+    <h2 id="time-left-main">TIME LEFT UNTIL OUR <span id="time-left-span">BIGGEST SALE OF THE YEAR BEGINS</span></h2>
+    <div class="time-left-time" id="days">
+        <p class="paragraph-time" id="d-days"></p>
+        <p class="paragraph-time-text" id="d-days-text">DAYS</p>
+    </div>
+    <div class="time-left-time" id="hours">
+        <p class="paragraph-time" id="h-hours"></p>
+        <p class="paragraph-time-text" id="h-hours-text">HOURS</p>
+    </div>
+    <div class="time-left-time" id="minutes">
+        <p class="paragraph-time" id="m-minutes"></p>
+        <p class="paragraph-time-text" id="m-minutes-text">MINUTES</p>
+    </div>
+    <div class="time-left-time" id="seconds">
+        <p class="paragraph-time" id="s-seconds"></p>
+        <p class="paragraph-time-text" id="s-seconds-text">SECONDS</p>
+    </div>
+</section>
+<script src="/static/app.js"></script>
+{% endblock %}

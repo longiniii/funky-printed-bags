@@ -1,0 +1,54 @@
+// fetch('./data.json')
+// .then(response => response.json())
+// .then(data =>  products(data))
+let store = document.getElementById('store')
+let header = document.getElementById('header')
+let products = document.querySelectorAll('.product')
+let productImages = document.querySelectorAll('.product-image')
+let productImagesPatterns = document.querySelectorAll('.image-pattern')
+let add = document.querySelectorAll('.add')
+let timeLeftSection = document.getElementById('time-left')
+let timeLeft = document.getElementById('time-left-main')
+let timeLeftBoxes = document.querySelectorAll('.time-left-time')
+let days = document.getElementById('d-days')
+let hours = document.getElementById('h-hours')
+let minutes = document.getElementById('m-minutes')
+let seconds = document.getElementById('s-seconds')
+let search = document.getElementById('item-search')
+
+let bags;
+    products.forEach((element, index) => {
+        element.addEventListener('mouseover', function() {
+            productImages[index].style.display = 'none'
+            productImagesPatterns[index].style.display = 'block'
+        });
+        element.addEventListener('mouseout', function() {
+            productImagesPatterns[index].style.display = 'none'
+            productImages[index].style.display = 'block'
+        });        element.addEventListener('mouseover', function() {
+            add[index].style.display = 'block'
+        });
+        element.addEventListener('mouseout', function() {
+            add[index].style.display = 'none'
+        });
+    });
+// }
+var countDownDate = new Date("Jul 03, 2024 00:00:000").getTime();
+
+let x = setInterval(function() {
+    let now = new Date().getTime();
+    let distance = countDownDate - now;
+    if (distance <= 0) {
+        timeLeftBoxes.forEach(item => {
+            item.style.display = 'none'
+        });
+        timeLeftSection.style.height = '15rem'
+        timeLeft.innerText = 'THE BIGGEST SALE OF THE YEAR HAS BEGUN'
+        clearInterval(x)
+    } else {
+        days.innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+        hours.innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        minutes.innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        seconds.innerText = Math.floor((distance % (1000 * 60)) / 1000);
+    }
+}, 1000);

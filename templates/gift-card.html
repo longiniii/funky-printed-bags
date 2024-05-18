@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block body %}
+<section id="gift-card">
+    <div id="div-of-the-picture">
+        <img id="picture" src="https://static.wixstatic.com/media/84770f_0fd9502fe5834de0990e6a4cca719a38~mv2.jpg/v1/fit/w_580,h_435,lg_1,q_80,usm_0.66_1.00_0.01,enc_auto/84770f_0fd9502fe5834de0990e6a4cca719a38~mv2.jpg" alt="">
+    </div>
+    <div id="main-div">
+        <div id="information">
+            <h1 id="main-text">eGift Card</h1>
+            <h2 id="price">$25</h2>
+            <p id="message">You can't go wrong with a gift card. Choose an amount and write a personalized message to make this gift your own.</p>
+        </div>
+        <form id="price-and-quantity" name="forma">
+            <label class="amount-label" id="m25-label" for="m25">$25</label>
+            <input class="amount" type="radio" id="m25" name="amount" value="25">
+            <label class="amount-label" for="m50">$50</label>
+            <input class="amount" type="radio" id="m50" name="amount" value="50">
+            <label class="amount-label" for="m100">$100</label>
+            <input class="amount" type="radio" id="m100" name="amount" value="100">
+            <label class="amount-label" for="m150">$150</label>
+            <input class="amount" type="radio" id="m150" name="amount" value="150">
+            <label class="amount-label" for="m200">$200</label>
+            <input class="amount" type="radio" id="m200" name="amount" value="200">
+            <div id="quantity-div">
+                <button id="subtract" type="button">-</button>
+                <p id="quantity">1</p>
+                <button id="add" type="button">+</button>
+            </div>
+            <p id="for-who">Who's the gift card for?</p>
+            <button type="button" id="for-someone-else">For someone else</button>
+            <button type="button" id="for-myself">For myself</button>
+            <label class="for-someone-else-or-for-myself-input-and-label" for="email-input" id="email-input-label">Recipient email *</label>
+            <input class="for-someone-else-or-for-myself-input-and-label" name="email-input" type="email" id="email-input" required>
+            <label class="for-someone-else-or-for-myself-input-and-label" for="name-input" id="name-input-label">Recipient name</label>
+            <input class="for-someone-else-or-for-myself-input-and-label" name="name-input" type="text" id="name-input">
+            <label class="for-someone-else-or-for-myself-input-and-label" for="date-input" id="date-input-label">Delivery date</label>
+            <input class="for-someone-else-or-for-myself-input-and-label" name="date-input" type="date" id="date-input">
+            <label class="for-someone-else-or-for-myself-input-and-label" for="message-input" id="message-input-label">Message</label>
+            <textarea class="for-someone-else-or-for-myself-input-and-label" id="message-input"></textarea>
+            <button type="button" id="submit">Buy now</button>
+        </form>
+    </div>
+</section>
+<script src="/static/giftCard.js"></script>
+{% endblock %}

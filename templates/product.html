@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block body %}
+<section id="product-information">
+    <div id="current-and-next-product">
+        <div id="current">
+            <p><a href="/">Home</a>/{{product['name']}}</p>
+        </div>
+        <div id="previous-and-next">
+            <p>
+                {% if product['id'] != 1 %}
+                    <a href="/product/{{product['id'] - 1}}">
+                {% endif %}
+                {% if product['id'] == 1 %}
+                    <span style="color: rgba(113,113,113);">
+                {% endif %}
+                        <i class="fa-solid fa-angle-left"></i>&#160;
+                        PREV
+                {% if product['id'] == 1 %}
+                    </span>
+                {% endif %}
+                    </a>
+                &#160;&#160;|&#160;&#160;
+                {% if product['id'] < products[-1]['id'] %}
+                    <a href="/product/{{product['id'] + 1}}">
+                {% endif %}
+                {% if product['id'] >= products[-1]['id'] %}
+                    <span style="color: rgba(113,113,113);">
+                {% endif %}
+                        NEXT 
+                        &#160;<i class="fa-solid fa-angle-right"></i>
+                {% if product['id'] >= products[-1]['id'] %}
+                    </span>
+                    {% endif %}
+                {% if product['id'] < products[-1]['id'] %}
+                </a>
+                {% endif %}
+                </p>
+        </div>
+    </div>
+    <div id="about-the-product">
+        <div id="images-and-description">
+            {% set images = [] %}
+            {% for image in product['images'] %}
+                {% set _ = images.append(image) %}
+            {% endfor %}
+            {% for image_pattern in product['images_patterns'] %}
+                {% set _ = images.append(image_pattern) %}
+            {% endfor %}
+            <div id="main-image-div">
+                <img id="main-image" src="" alt="">
+            </div>
+        </div>
+        <div id="price-and-more">
+            <h1>{{product['name']}}</h1>
+            <div id="description">
+                <p>I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.</p>
+            </div>
+            <p id="id">ID: {{product['id']}}</p>
+            <div id="every-image-div">
+                <ul>
+                    {% for image in images %}
+                    <li><img class="every-image" src="{{image}}" alt=""></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <p id="price">${{product['cost'] - 0.01}}</p>
+            <p id="quantity-text">Quantity</p>
+            <div id="quantity-div">
+                <input value="1" id="quantity" type="text">
+                <button id="add">
+                    <i class="fa-solid fa-angle-up"></i>
+                </button>
+                <button id="remove">
+                    <i class="fa-solid fa-angle-down"></i>
+                </button>
+            </div>
+            <button id="add-to-cart">Add to Cart</button>
+            <button id="buy-now">Buy Now</button>
+        </div>
+    </div>
+</section>
+<script src="/static/product.js"></script>
+{% endblock %}
