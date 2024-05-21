@@ -1,8 +1,8 @@
-$color5: var(--color5);
 $color4: var(--color4);
 $color1: var(--color1);
 $color2: var(--color2);
 $color3: var(--color3);
+$color5: var(--color5);
 
 
 :root {
@@ -10,6 +10,7 @@ $color3: var(--color3);
 	--color2: rgb(0,0,0);
 	--color3: red;
 	--color4: rgb(117,117,117);
+    --color5: rgb(240,240,240)
 }
 
 * {
@@ -101,7 +102,7 @@ html {
             width: 20rem;
             height: 330px;
             overflow: auto;
-            border-bottom: 2px solid black;
+            border-bottom: 2px solid $color2;
             h3 {
                 padding-top: 10px;
                 padding-left: 18px;
@@ -147,7 +148,6 @@ html {
         #login {
             position: absolute;
             top: 4.5rem;
-            // left: 22rem;
             left: 50%;
             font-size: 1.6rem;
             border: none;
@@ -155,6 +155,7 @@ html {
             font-weight: 700;
             width: 6rem;
             height: 2.5rem;
+            cursor: pointer;
         }
         #nav-cart-open-button {
             position: absolute;
@@ -686,9 +687,8 @@ html {
                 }
                 #quantity {
                     text-align: center;
-                    font-size: 1.8rem;
-                    padding-top: 4.7%;
-                    flex: 1;
+                    font-size: 1.85rem;
+                    cursor: default;
                 }
             }
             #for-who {
@@ -1209,6 +1209,142 @@ html {
                     }
                 }
             }
+        }
+    }
+}
+
+#log-in {
+    margin-top: 40px;
+    margin-bottom: 50px;
+    form {
+        margin: auto;
+        width: 315px;
+        border-radius: 8px;
+        box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 32px 0px;
+        padding: 23px;
+        h1 {
+            text-align: center;
+            font-size: 3.2rem;
+        }
+        h2 {
+            padding-top: 5px;
+            text-align: center;
+            font-size: 2rem;
+        }
+        label {
+            color: rgb(101, 107, 115);
+        }
+        input {
+            background-color: $color5;
+            outline: none;
+            border: none;
+            width: 100%;
+            height: 40px;
+            padding-left: 10px;
+            &:focus {
+                border-bottom: 2px solid $color2;
+            }
+        }
+        #username-or-email {
+            margin-top: 23px;
+        }
+        #password {
+            margin-top: 15px;
+        }
+        button {
+            display: block;
+            margin: auto;
+            margin-top: 24px;
+            margin-bottom: 15px;
+            border-radius: 3.5px;
+            height: 33px;
+            width: 90px;
+            background-color: $color2;
+            color: white;
+            outline: none;
+            border: none;
+            font-size: 1.45rem;
+            transition-duration: 0.3s;
+            cursor: pointer;
+            border: 2px solid $color2;
+            &:hover {
+                color: $color2;
+                background-color: $color1;
+            }
+        }
+    }
+    #new-to-twirly {
+        padding-top: 18px;
+        text-align: center;
+        font-size: 1.4rem;
+        a {
+            color: blue;
+        }
+    }
+}
+#sign-up {
+    margin-top: 40px;
+    margin-bottom: 50px;
+    form {
+        margin: auto;
+        width: 350px;
+        border-radius: 8px;
+        box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 32px 0px;
+        padding: 23px;
+        h1 {
+            text-align: center;
+            font-size: 3.2rem;
+        }
+        h2 {
+            padding-top: 5px;
+            text-align: center;
+            font-size: 2rem;
+        }
+        input {
+            outline: none;
+            border: none;
+            border-bottom: 2px solid rgba(125, 125, 125, 0.5);
+            width: 100%;
+            height: 40px;
+            padding-left: 10px;
+            &:focus {
+                border-bottom: 2px solid $color2;
+            }
+        }
+        div {
+            margin-top: 15px;
+        }
+        #username {
+            margin-top: 23px;
+        }
+        button {
+            display: block;
+            margin: auto;
+            margin-top: 24px;
+            margin-bottom: 15px;
+            border-radius: 3.5px;
+            height: 33px;
+            width: 90px;
+            background-color: $color2;
+            color: white;
+            outline: none;
+            border: none;
+            font-size: 1.45rem;
+            transition-duration: 0.3s;
+            cursor: pointer;
+            border: 2px solid $color2;
+            &:hover {
+                color: $color2;
+                background-color: $color1;
+            }
+        }
+    }
+    #already-an-user {
+        padding-top: 18px;
+        text-align: center;
+        font-size: 1.4rem;
+        a {
+            color: blue;
         }
     }
 }

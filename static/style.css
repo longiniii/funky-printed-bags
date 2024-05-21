@@ -3,6 +3,7 @@
   --color2: rgb(0,0,0);
   --color3: red;
   --color4: rgb(117,117,117);
+  --color5: rgb(240,240,240) ;
 }
 
 * {
@@ -96,7 +97,7 @@ html {
   width: 20rem;
   height: 330px;
   overflow: auto;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--color2);
 }
 #header #right #nav-product-search-results h3 {
   padding-top: 10px;
@@ -150,6 +151,7 @@ html {
   font-weight: 700;
   width: 6rem;
   height: 2.5rem;
+  cursor: pointer;
 }
 #header #right #nav-cart-open-button {
   position: absolute;
@@ -685,9 +687,8 @@ html {
 }
 #gift-card #main-div #price-and-quantity #quantity-div #quantity {
   text-align: center;
-  font-size: 1.8rem;
-  padding-top: 4.7%;
-  flex: 1;
+  font-size: 1.85rem;
+  cursor: default;
 }
 #gift-card #main-div #price-and-quantity #for-who {
   position: absolute;
@@ -1205,6 +1206,143 @@ html {
   height: 100%;
   width: 68px;
   cursor: pointer;
+}
+
+#log-in {
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+#log-in form {
+  margin: auto;
+  width: 315px;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 32px 0px;
+  padding: 23px;
+}
+#log-in form h1 {
+  text-align: center;
+  font-size: 3.2rem;
+}
+#log-in form h2 {
+  padding-top: 5px;
+  text-align: center;
+  font-size: 2rem;
+}
+#log-in form label {
+  color: rgb(101, 107, 115);
+}
+#log-in form input {
+  background-color: var(--color5);
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 40px;
+  padding-left: 10px;
+}
+#log-in form input:focus {
+  border-bottom: 2px solid var(--color2);
+}
+#log-in form #username-or-email {
+  margin-top: 23px;
+}
+#log-in form #password {
+  margin-top: 15px;
+}
+#log-in form button {
+  display: block;
+  margin: auto;
+  margin-top: 24px;
+  margin-bottom: 15px;
+  border-radius: 3.5px;
+  height: 33px;
+  width: 90px;
+  background-color: var(--color2);
+  color: white;
+  outline: none;
+  border: none;
+  font-size: 1.45rem;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  border: 2px solid var(--color2);
+}
+#log-in form button:hover {
+  color: var(--color2);
+  background-color: var(--color1);
+}
+#log-in #new-to-twirly {
+  padding-top: 18px;
+  text-align: center;
+  font-size: 1.4rem;
+}
+#log-in #new-to-twirly a {
+  color: blue;
+}
+
+#sign-up {
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+#sign-up form {
+  margin: auto;
+  width: 350px;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 32px 0px;
+  padding: 23px;
+}
+#sign-up form h1 {
+  text-align: center;
+  font-size: 3.2rem;
+}
+#sign-up form h2 {
+  padding-top: 5px;
+  text-align: center;
+  font-size: 2rem;
+}
+#sign-up form input {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid rgba(125, 125, 125, 0.5);
+  width: 100%;
+  height: 40px;
+  padding-left: 10px;
+}
+#sign-up form input:focus {
+  border-bottom: 2px solid var(--color2);
+}
+#sign-up form div {
+  margin-top: 15px;
+}
+#sign-up form #username {
+  margin-top: 23px;
+}
+#sign-up form button {
+  display: block;
+  margin: auto;
+  margin-top: 24px;
+  margin-bottom: 15px;
+  border-radius: 3.5px;
+  height: 33px;
+  width: 90px;
+  background-color: var(--color2);
+  color: white;
+  outline: none;
+  border: none;
+  font-size: 1.45rem;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  border: 2px solid var(--color2);
+}
+#sign-up form button:hover {
+  color: var(--color2);
+  background-color: var(--color1);
+}
+#sign-up #already-an-user {
+  padding-top: 18px;
+  text-align: center;
+  font-size: 1.4rem;
+}
+#sign-up #already-an-user a {
+  color: blue;
 }
 
 a {

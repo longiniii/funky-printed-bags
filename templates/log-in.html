@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<section id="log-in">
+    <form action="">
+        <h1>Twirly</h1>
+        <h2>Welcome back!</h2>
+        <div id="username-or-email">
+            <label for="username-or-email-input">Username or Email</label>
+            <input id="username-or-email-input" type="text">
+        </div>
+        <div id="password">
+            <label for="password-input" id="password-label">Password</label>
+            <input id="password-iinput" type="password">
+        </div>
+        <button>Log in</button>
+    </form>
+    <p id="new-to-twirly">New to Twirly? <a href="/sign-up">Sign up</a></p>
+</section>
+
+
+{% endblock %}

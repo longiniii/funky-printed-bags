@@ -214,29 +214,44 @@ data = [
 ]
 
 
+@app.context_processor
+def global_variable():
+    return dict(products=data)
+
+
 @app.route("/")
 def index():
-    return render_template("index.html", products=data)
+    return render_template("index.html")
 
 
 @app.route("/product/<product_id>")
 def product_details(product_id):
-    return render_template("product.html", products=data, product=data[int(product_id) - 1])
+    return render_template("product.html", product=data[int(product_id) - 1])
 
 
 @app.route("/gift-card")
 def gift_card():
-    return render_template("gift-card.html", products=data)
+    return render_template("gift-card.html")
 
 
 @app.route("/gift-card-checkout")
 def gift_card_checkout():
-    return render_template("gift-card-checkout.html", products=data)
+    return render_template("gift-card-checkout.html")
 
 
 @app.route("/contact")
 def contact():
-    return render_template("contact.html", products=data)
+    return render_template("contact.html")
+
+
+@app.route("/log-in")
+def log_in():
+    return render_template("log-in.html")
+
+
+@app.route("/sign-up")
+def sign_in():
+    return render_template("sign-up.html")
 
 
 app.run(debug=True)
