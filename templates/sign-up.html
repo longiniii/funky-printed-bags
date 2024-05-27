@@ -2,22 +2,35 @@
 
 {% block body %}
 <section id="sign-up">
-    <form action="">
+    <form method="post" action="">
+        {{registration_form.hidden_tag()}}
         <h1>Twirly</h1>
         <h2>Join us today!</h2>
         <div id="username">
-            <input id="username-input" placeholder="Username" type="text">
+            {% for error in registration_form.errors.username %}
+            <p class="validation">{{error}}</p>
+            {% endfor %}
+            {{registration_form.username(placeholder=registration_form.username.label.text)}}
         </div>
         <div id="email">
-            <input id="email-input" placeholder="Email" type="text">
+            {% for error in registration_form.errors.email %}
+            <p class="validation">{{error}}</p>
+            {% endfor %}
+            {{registration_form.email(placeholder=registration_form.email.label.text)}}
         </div>
         <div id="password">
-            <input id="password-iinput" placeholder="Password" type="password">
+            {% for error in registration_form.errors.password %}
+            <p class="validation">{{error}}</p>
+            {% endfor %}
+            {{registration_form.password(placeholder=registration_form.password.label.text)}}
         </div>
         <div id="repeat-password">
-            <input id="repeat-password-iinput" placeholder="Repeat Password" type="password">
+            {% for error in registration_form.errors.repeat_password %}
+            <p class="validation">{{error}}</p>
+            {% endfor %}
+            {{registration_form.repeat_password(placeholder=registration_form.repeat_password.label.text)}}
         </div>
-        <button>Sign up</button>
+        {{ registration_form.submit(class='submit')}}
     </form>
     <p id="already-an-user">Already an User? <a href="/log-in">Log in</a></p>
 </section>

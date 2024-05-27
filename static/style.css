@@ -104,17 +104,17 @@ html {
   padding-left: 18px;
   font-size: 1.4rem;
 }
-#header #right #nav-product-search-results #nav-search-product {
+#header #right #nav-product-search-results .nav-search-product {
   height: 80px;
   width: 100%;
   display: flex;
   flex-flow: row wrap;
 }
-#header #right #nav-product-search-results #nav-search-product #nav-search-product-image {
+#header #right #nav-product-search-results .nav-search-product .nav-search-product-image {
   flex: 1;
   position: relative;
 }
-#header #right #nav-product-search-results #nav-search-product #nav-search-product-image img {
+#header #right #nav-product-search-results .nav-search-product .nav-search-product-image img {
   position: absolute;
   right: 0;
   top: 50%;
@@ -126,22 +126,22 @@ html {
   -o-object-fit: cover;
      object-fit: cover;
 }
-#header #right #nav-product-search-results #nav-search-product #nav-search-product-information {
+#header #right #nav-product-search-results .nav-search-product .nav-search-product-information {
   flex: 2;
 }
-#header #right #nav-product-search-results #nav-search-product #nav-search-product-information #nav-search-product-name {
+#header #right #nav-product-search-results .nav-search-product .nav-search-product-information .nav-search-product-name {
   padding-left: 4px;
   padding-top: 18px;
   font-size: 1.2rem;
   font-weight: 500;
 }
-#header #right #nav-product-search-results #nav-search-product #nav-search-product-information #nav-search-product-price {
+#header #right #nav-product-search-results .nav-search-product .nav-search-product-information .nav-search-product-price {
   padding-left: 4px;
   padding-top: 9px;
   font-size: 1.2rem;
   font-weight: 300;
 }
-#header #right #login {
+#header #right #sign-up-button {
   position: absolute;
   top: 4.5rem;
   left: 50%;
@@ -481,14 +481,14 @@ html {
   top: 10%;
   font-size: 1.5rem;
 }
-#footer #bottom #email-label {
+#footer #bottom #footer-email-label {
   position: absolute;
   left: 23%;
   top: 28%;
   font-size: 1.4rem;
   color: var(--color4);
 }
-#footer #bottom #email {
+#footer #bottom #footer-email {
   position: absolute;
   left: 23%;
   top: 48%;
@@ -502,10 +502,10 @@ html {
   font-size: 1.3rem;
   padding-left: 1.4rem;
 }
-#footer #bottom #email:focus {
+#footer #bottom #footer-email:focus {
   border-bottom: 4px solid var(--color3);
 }
-#footer #bottom #email-submit {
+#footer #bottom #footer-email-submit {
   position: absolute;
   left: 65%;
   top: 48%;
@@ -517,7 +517,7 @@ html {
   transition-duration: 0.3s;
   cursor: pointer;
 }
-#footer #bottom #email-submit:hover {
+#footer #bottom #footer-email-submit:hover {
   background-color: var(--color2);
   color: var(--color1);
 }
@@ -1312,10 +1312,11 @@ html {
 #sign-up form div {
   margin-top: 15px;
 }
-#sign-up form #username {
-  margin-top: 23px;
+#sign-up form div .validation {
+  color: red;
 }
-#sign-up form button {
+#sign-up form .submit {
+  padding-left: 0;
   display: block;
   margin: auto;
   margin-top: 24px;
@@ -1332,7 +1333,7 @@ html {
   cursor: pointer;
   border: 2px solid var(--color2);
 }
-#sign-up form button:hover {
+#sign-up form .submit:hover {
   color: var(--color2);
   background-color: var(--color1);
 }
@@ -1345,6 +1346,53 @@ html {
   color: blue;
 }
 
+#product-posting {
+  margin-top: 60px;
+}
+#product-posting form {
+  margin: auto;
+  width: 350px;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 32px 0px;
+  padding: 23px;
+}
+#product-posting form input {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid rgba(125, 125, 125, 0.5);
+  width: 100%;
+  height: 40px;
+  padding-left: 10px;
+}
+#product-posting form input:focus {
+  border-bottom: 2px solid var(--color2);
+}
+#product-posting form div {
+  margin-top: 15px;
+}
+#product-posting form .submit {
+  padding-left: 0;
+  display: block;
+  margin: auto;
+  margin-top: 24px;
+  margin-bottom: 15px;
+  border-radius: 3.5px;
+  height: 33px;
+  width: 90px;
+  background-color: var(--color2);
+  color: white;
+  outline: none;
+  border: none;
+  font-size: 1.45rem;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  border: 2px solid var(--color2);
+}
+#product-posting form .submit:hover {
+  color: var(--color2);
+  background-color: var(--color1);
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -1354,7 +1402,7 @@ a {
   #header #right #item-search {
     left: 0% !important;
   }
-  #header #right #login {
+  #header #right #sign-up-button {
     left: 40% !important;
   }
   #header #right #nav-cart-open-button {

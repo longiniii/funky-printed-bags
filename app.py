@@ -1,6 +1,10 @@
 from flask import Flask, render_template
 
+# import forms
+from forms import RegistrationForm, PostingProduct
+
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "AIDIFAIDFIASDIF"
 
 data = [
     {
@@ -20,7 +24,7 @@ data = [
         ],
         "images_patterns": [
             "https://static.wixstatic.com/media/45d10e_35c84fb1d48540f1886b2ceb7a342c37~mv2_d_3500_1968_s_2.jpg/v1/fill/w_541,h_541,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/45d10e_35c84fb1d48540f1886b2ceb7a342c37~mv2_d_3500_1968_s_2.jpg"
-        ]
+        ]   
     },
     {
         "id": 2,
@@ -249,9 +253,36 @@ def log_in():
     return render_template("log-in.html")
 
 
-@app.route("/sign-up")
+@app.route("/sign-up", methods=["GET","POST"])
 def sign_in():
-    return render_template("sign-up.html")
+    registration_form = RegistrationForm()
+    if registration_form.validate_on_submit():
+        print(registration_form.username.data)
+    return render_template("sign-up.html", registration_form=registration_form)
+
+@app.route("/post-a-product", methods=["GET", "POST"])
+def post_a_product():
+    product_posting_form = PostingProduct()
+    if product_posting_form.validate_on_submit():
+        print(product_posting_form.how_much_discount.data)
+        hasDiscount = False
+        howMuchDiscount = None
+        if product_posting_form.how_much_discount.data > 0:
+            hasDiscount = True
+            howMuchDiscount = product_posting_form.how_much_discount.data
+        new_product = {
+            "id": len(data) + 1,
+            "name": product_posting_form.name.data,
+            "cost": product_posting_form.cost.data,
+            "discount": hasDiscount,
+            "howMuchDiscount": howMuchDiscount,
+            "topSeller": False,
+            "colors": product_posting_form.colors.data.split(' '),
+            "images": product_posting_form.images.data.split(' '),
+            "images_patterns":  product_posting_form.images_patterns.data.split(' ')
+        }
+        data.append(new_product)
+    return render_template("post-a-product.html", product_posting_form=product_posting_form)
 
 
 app.run(debug=True)

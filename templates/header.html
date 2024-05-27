@@ -8,6 +8,7 @@
             <li><a href="/">Shop</a></li>
             <li><a href="/gift-card">Gift Card</a></li>
             <li><a href="/contact">Contact</a></li>
+            <li><a href="/post-a-product">Post a product</a></li>
         </ul>
     </nav>
     <div id="right">
@@ -16,19 +17,19 @@
             <h3>Trending products</h3>
             {% for product in products %}
             <a href="/product/{{product['id']}}">
-                <div id="nav-search-product">
-                    <div id="nav-search-product-image">
+                <div class="nav-search-product">
+                    <div class="nav-search-product-image">
                         <img src="{{product['images'][0]}}" alt="">
                     </div>
-                    <div id="nav-search-product-information">
-                        <p id="nav-search-product-name">{{product['name']}}</p>
-                        <p id="nav-search-product-price">${{product['cost'] - 0.01}}</p>
+                    <div class="nav-search-product-information">
+                        <p class="nav-search-product-name">{{product['name']}}</p>
+                        <p class="nav-search-product-price">${{product['cost'] - 0.01}}</p>
                     </div>
                 </div>
             </a>
             {% endfor%}
         </div>
-        <a href="/log-in"><button id="login">Log In</button></a>
+        <a href="/sign-up"><button id="sign-up-button">Sign up</button></a>
         <button id="nav-cart-open-button"><i class="fa-solid fa-cart-shopping"></i> Cart</button>
     </div>
 </header>

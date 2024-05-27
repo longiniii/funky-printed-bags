@@ -3,7 +3,8 @@ let navCartCloseButton = document.getElementById('nav-cart-close-button')
 let cartSlider = document.getElementById('cart-slider')
 let searchInput = document.getElementById('item-search')
 let searchResults = document.getElementById('nav-product-search-results')
-
+let productsData = document.querySelectorAll('.nav-search-product')
+let searchedProducts = productsData
 
 navCartOpenButton.addEventListener('click', function() {
     cartSlider.style.right = '0'
@@ -20,6 +21,11 @@ navCartCloseButton.addEventListener('click', function() {
 
 searchInput.addEventListener('click', function() {
     checkIfFocused()
+})
+searchInput.addEventListener('input', function() {
+    productsData.forEach(item => {
+        console.log(item)
+    });
 })
 
 let checkIfFocused = () => {
@@ -43,3 +49,5 @@ let checkIfFocused = () => {
         }
     }, 20);
 }
+
+
