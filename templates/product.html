@@ -78,7 +78,7 @@
             <button id="buy-now">Buy Now</button>
             {% set id = product['id'] %}
             <button onclick="location.assign('/delete-product/{{id}}')" id="delete">Delete</button>
-            <button id="edit">Edit</button>
+            <button onclick="location.assign('/edit-product/{{id}}')" id="edit">Edit</button>
         </div>
     </div>
 </section>

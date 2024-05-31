@@ -15,6 +15,41 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/post-a-product", methods=["GET", "POST"])
+def post_a_product():
+    product_posting_form = PostingProduct()
+    if product_posting_form.validate_on_submit():
+        colors = product_posting_form.colors.data.split(' ')
+        images =  product_posting_form.images.data.split(' ')
+        images_patterns = product_posting_form.images_patterns.data.split(' ')
+        hasDiscount = False
+        howMuchDiscount = None
+        if product_posting_form.how_much_discount.data > 0:
+            hasDiscount = True
+            howMuchDiscount = product_posting_form.how_much_discount.data
+        new_product = Product(
+            name = product_posting_form.name.data, 
+            cost = product_posting_form.cost.data, 
+            how_much_discount = howMuchDiscount, 
+            added_by = 1, 
+            edited_by = 1)
+        db.session.add(new_product)
+        db.session.commit()
+        for color in colors:
+            new_color = ProductColor(color = color, product = new_product)
+            db.session.add(new_color)
+            db.session.commit()
+        for image in images:
+            new_image = ProductImage(image = image, product = new_product)
+            db.session.add(new_image)
+            db.session.commit()
+        for image_pattern in images_patterns:
+            new_image_pattern = ProductImagePattern(image_pattern = image_pattern, product = new_product)
+            db.session.add(new_image_pattern)
+            db.session.commit()
+    return render_template("post-a-product.html", product_posting_form=product_posting_form)
+
+
 @app.route("/product/<product_id>")
 def product_details(product_id):
     product = Product.query.get(product_id)
@@ -28,6 +63,52 @@ def delete_product(product_id):
     db.session.commit()
     return redirect("/")
 
+
+@app.route("/edit-product/<product_id>", methods=['GET', 'POST'])
+def edit_product(product_id):
+    product = Product().query.get(product_id)
+    colors = []
+    images = []
+    image_patterns = []
+    for color in product.colors:
+        colors.append(color.color)
+    for image in product.images:
+        images.append(image.image)
+    for image_pattern in product.image_patterns:
+        image_patterns.append(image_pattern.image_pattern)
+    
+    product_posting_form = PostingProduct(name = product.name, cost=product.cost, how_much_discount=product.how_much_discount, colors = " ".join(colors), images = " ".join(images), images_patterns = " ".join(image_patterns))
+    if product_posting_form.validate_on_submit():
+        colors = product_posting_form.colors.data.split(' ')
+        images =  product_posting_form.images.data.split(' ')
+        images_patterns = product_posting_form.images_patterns.data.split(' ')
+        hasDiscount = False
+        howMuchDiscount = None
+        if product_posting_form.how_much_discount.data > 0:
+            hasDiscount = True
+            howMuchDiscount = product_posting_form.how_much_discount.data
+        product.name = product_posting_form.name.data
+        product.cost = product_posting_form.cost.data
+        product.how_much_discount = howMuchDiscount
+        product.added_by = 1
+        product.edited_by = 1
+        # delete
+        for color in product.colors:
+            db.session.delete(color)
+        for image in product.images:
+            db.session.delete(image)
+        for image_pattern in product.image_patterns:
+            db.session.delete(image_pattern)
+        
+        # add
+        for color in colors:
+            product.colors.append(ProductColor(color = color, product = product))
+        for image in images:
+            product.images.append(ProductImage(image = image, product = product)) 
+        for image_pattern in images_patterns:
+            product.image_patterns.append(ProductImagePattern(image_pattern = image_pattern, product = product))
+        db.session.commit()
+    return render_template('edit-product.html', product_posting_form=product_posting_form)
 
 @app.route("/gift-card")
 def gift_card():
@@ -82,43 +163,7 @@ def sign_in():
     return render_template("sign-up.html", registration_form=registration_form)
 
 
-@app.route("/post-a-product", methods=["GET", "POST"])
-def post_a_product():
-    product_posting_form = PostingProduct()
-    if product_posting_form.validate_on_submit():
-        colors = product_posting_form.colors.data.split(' ')
-        images =  product_posting_form.images.data.split(' ')
-        images_patterns = product_posting_form.images_patterns.data.split(' ')
-        hasDiscount = False
-        howMuchDiscount = None
-        if product_posting_form.how_much_discount.data > 0:
-            hasDiscount = True
-            howMuchDiscount = product_posting_form.how_much_discount.data
-        new_product = Product(
-            name = product_posting_form.name.data, 
-            cost = product_posting_form.cost.data, 
-            how_much_discount = howMuchDiscount, 
-            added_by = 1, 
-            edited_by = 1)
-        db.session.add(new_product)
-        db.session.commit()
-        for color in colors:
-            new_color = ProductColor(color = color, product = new_product)
-            db.session.add(new_color)
-            db.session.commit()
-        for image in images:
-            new_image = ProductImage(image = image, product = new_product)
-            db.session.add(new_image)
-            db.session.commit()
-        for image_pattern in images_patterns:
-            new_image_pattern = ProductImagePattern(image_pattern = image_pattern, product = new_product)
-            db.session.add(new_image_pattern)
-            db.session.commit()
-    return render_template("post-a-product.html", product_posting_form=product_posting_form)
-
-
 @app.route("/api/add-to-cart", methods=['POST'])
 def add_to_cart():
     post_data = request.get_json()
-    print(post_data)
     return 'successfully added to cart'

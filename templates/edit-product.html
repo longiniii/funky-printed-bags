@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<section id="product-posting">
+    <form method="post" action="">
+        {{ product_posting_form.hidden_tag() }}
+        <div>
+            {% for error in product_posting_form.errors.name %}
+            <p class="validation">{{error}}</p>
+            {% endfor %}
+            {{ product_posting_form.name(placeholder=product_posting_form.name.label.text)}}
+        </div>
+        <div>
+            {% for error in product_posting_form.errors.cost %}
+            <p class="validation">{{error}}</p>
+            {% endfor %}
+            {{ product_posting_form.cost(placeholder=product_posting_form.cost.label.text)}}
+        </div>
+        <div>
+            {% for error in product_posting_form.errors.how_much_discount %}
+            <p class="validation">{{error}}</p>
+            {% endfor %}
+            {{ product_posting_form.how_much_discount(placeholder=product_posting_form.how_much_discount.label.text)}}
+        </div>
+        <div>
+            {% for error in product_posting_form.errors.colors %}
+            <p class="validation">{{error}}</p>
+            {% endfor %}
+            {{ product_posting_form.colors(placeholder=product_posting_form.colors.label.text)}}
+        </div>
+        <div>
+            {% for error in product_posting_form.errors.images %}
+            <p class="validation">{{error}}</p>
+            {% endfor %}
+            {{ product_posting_form.images(placeholder=product_posting_form.images.label.text)}}
+        </div>
+        <div>
+            {% for error in product_posting_form.errors.images_patterns %}
+            <p class="validation">{{error}}</p>
+            {% endfor %}
+            {{ product_posting_form.images_patterns(placeholder=product_posting_form.images_patterns.label.text)}}
+        </div>
+        {{product_posting_form.submit(class='submit')}}
+    </form>
+</section>
+{% endblock %}
