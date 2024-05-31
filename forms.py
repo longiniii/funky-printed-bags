@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import StringField, PasswordField, EmailField, SubmitField, IntegerField, BooleanField
-from wtforms.validators import data_required, length, email, equal_to
+from wtforms.fields import StringField, PasswordField, EmailField, SubmitField, IntegerField, BooleanField, TextAreaField
+from wtforms.validators import data_required, length, email, equal_to, optional
 
 
 class RegistrationForm(FlaskForm):
@@ -12,10 +12,20 @@ class RegistrationForm(FlaskForm):
 
 
 class PostingProduct(FlaskForm):
-    name = StringField("products name", validators=[data_required(message="Products name is required")])
-    cost = IntegerField("products price", validators=[data_required(message="Products price is required")])
-    how_much_discount = IntegerField("products discount, in % percentages")
-    colors = StringField("products colors  (separate each with a space)", validators=[data_required(message="Products color is required")])
-    images = StringField("products images  (separate each with a space)", validators=[data_required(message="Products image is required")])
-    images_patterns = StringField("products image patterns (separate each with a space)", validators=[data_required(message="Products image pattern is required")])
+    name = StringField("products name   (name)", validators=[data_required(message="Products name is required")])
+    cost = IntegerField("products price   (num)", validators=[data_required(message="Products price is required")])
+    how_much_discount = IntegerField("products discount, in % percentages   (num)")
+    colors = StringField("products colors   (color1, color2, color3...)", validators=[data_required(message="Products color is required")])
+    images = StringField("products images   (url1, url2, url3...)", validators=[data_required(message="Products image is required")])
+    images_patterns = StringField("products image patterns   (url1, url2, url3...)", validators=[data_required(message="Products image pattern is required")])
+    submit = SubmitField("Submit")
+
+
+class ContactForm(FlaskForm):
+    first_name = StringField("first name*", validators=[data_required(message="first name is required")])
+    last_name = StringField("last name*", validators=[data_required(message="last name required")])
+    email = StringField("email*", validators=[data_required(message="email is required")])
+    phone = IntegerField("phone", validators=[optional()])
+    subject = StringField("subject*", validators=[data_required("subject is required")])
+    message = TextAreaField("message*", validators=[data_required(message="message is required")])
     submit = SubmitField("Submit")

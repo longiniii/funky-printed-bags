@@ -41,10 +41,10 @@
         <div id="images-and-description">
             {% set images = [] %}
             {% for image in product['images'] %}
-                {% set _ = images.append(image) %}
+                {% set _ = images.append(image['image']) %}
             {% endfor %}
-            {% for image_pattern in product['images_patterns'] %}
-                {% set _ = images.append(image_pattern) %}
+            {% for image_pattern in product['image_patterns'] %}
+                {% set _ = images.append(image_pattern['image_pattern']) %}
             {% endfor %}
             <div id="main-image-div">
                 <img id="main-image" src="" alt="">
@@ -76,8 +76,11 @@
             </div>
             <button id="add-to-cart">Add to Cart</button>
             <button id="buy-now">Buy Now</button>
+            {% set id = product['id'] %}
+            <button onclick="location.assign('/delete-product/{{id}}')" id="delete">Delete</button>
+            <button id="edit">Edit</button>
         </div>
     </div>
 </section>
-<script src="/static/product.js"></script>
+<script type="module" src="/static/product.js"></script>
 {% endblock %}

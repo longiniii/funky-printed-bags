@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block body %}
+<section id="view-contacts">
+    <h1>view contacts</h1>
+    <div id="view-contacts-container">
+        {% for contact in contacts%}
+        <div id="each-contact">
+            <span id="id">
+                #{{contact['id']}}
+            </span>
+            <span id="name">
+                {{contact['first_name']}}
+                {{contact['last_name']}}
+            </span>
+            <span id="user">
+                user id: #{{contact['user']}}
+            </span>
+            <p id="subject">
+                {{contact['subject']}}
+            </p>
+            <p id="message">
+                {{contact['message']}}
+            </p>
+            {% set email = contact['email'] %}
+            {% set subject = contact['subject'] %}
+            {% set id = contact['id'] %}
+            <p id="email"><i class="fa-regular fa-envelope"></i> Email: <span onclick='window.open("https://mail.google.com/mail/?view=cm&fs=1&to={{ email|urlencode }}&su={{ subject|urlencode }}")'>{{contact['email']}}</span></p>
+            {% if contact['phone'] != None %}
+            <p><i class="fa-solid fa-phone"></i> phone: {{contact['phone']}}</p>
+            {% endif %}
+            <button onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to={{ email|urlencode }}&su={{ subject|urlencode }}')" id="send-email">send email</button>
+            <button onclick="location.assign('/delete-contact/{{id}}')" id="delete-contact">delete contact</button>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+<!-- /delete-contact/{{id}} -->

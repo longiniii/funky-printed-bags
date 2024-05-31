@@ -261,7 +261,7 @@ html {
   top: 25%;
   font-size: 1.7rem;
 }
-#store .product .text .add {
+#store .product .text .view {
   display: none;
   position: absolute;
   left: 50%;
@@ -276,7 +276,7 @@ html {
   cursor: pointer;
   transition-duration: 0.3s;
 }
-#store .product .text .add:hover {
+#store .product .text .view:hover {
   color: var(--color1);
   background-color: var(--color2);
 }
@@ -577,7 +577,7 @@ html {
   font-size: 1.4rem;
   font-weight: 100;
 }
-#contact #information-form #input-message {
+#contact #information-form .input-message {
   border: 1px solid var(--color2);
   padding-top: 0.6rem;
   padding-left: 1.4rem;
@@ -587,10 +587,11 @@ html {
   background-color: transparent;
   outline: none;
 }
-#contact #information-form #input-message:focus {
+#contact #information-form .input-message:focus {
   border: 2.8px solid var(--color2);
 }
-#contact #information-form #submit {
+#contact #information-form .submit {
+  padding-left: 0;
   display: block;
   margin: auto;
   margin-top: 20px;
@@ -605,9 +606,12 @@ html {
   transition-duration: 0.3s;
   cursor: pointer;
 }
-#contact #information-form #submit:hover {
+#contact #information-form .submit:hover {
   background-color: var(--color1);
   color: var(--color2);
+}
+#contact #information-form .error {
+  color: red;
 }
 
 #gift-card {
@@ -1188,6 +1192,44 @@ html {
   color: var(--color2);
   background-color: var(--color1);
 }
+#product-information #about-the-product #price-and-more #delete {
+  display: inline;
+  border-radius: 7px;
+  font-size: 1.6rem;
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  background-color: var(--color2);
+  color: var(--color1);
+  font-weight: 700;
+  height: 3rem;
+  width: 44%;
+  margin-left: 38px;
+  margin-top: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+#product-information #about-the-product #price-and-more #delete:hover {
+  color: var(--color2);
+  background-color: var(--color1);
+}
+#product-information #about-the-product #price-and-more #edit {
+  display: inline;
+  border-radius: 7px;
+  font-size: 1.6rem;
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  background-color: var(--color1);
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 700;
+  height: 3rem;
+  width: 44%;
+  white-space: nowrap;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+#product-information #about-the-product #price-and-more #edit:hover {
+  color: var(--color1);
+  background-color: var(--color2);
+}
 #product-information #about-the-product #price-and-more #every-image-div {
   margin-left: 38px;
   margin-top: 20px;
@@ -1348,6 +1390,7 @@ html {
 
 #product-posting {
   margin-top: 60px;
+  margin-bottom: 60px;
 }
 #product-posting form {
   margin: auto;
@@ -1370,6 +1413,9 @@ html {
 #product-posting form div {
   margin-top: 15px;
 }
+#product-posting form div .validation {
+  color: red !important;
+}
 #product-posting form .submit {
   padding-left: 0;
   display: block;
@@ -1391,6 +1437,82 @@ html {
 #product-posting form .submit:hover {
   color: var(--color2);
   background-color: var(--color1);
+}
+
+#view-contacts {
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+#view-contacts h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.3rem;
+}
+#view-contacts #view-contacts-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 40px;
+  font-size: 1.3rem;
+}
+#view-contacts #view-contacts-container #each-contact {
+  width: 300px;
+  border: 2px solid black;
+  padding: 10px;
+}
+#view-contacts #view-contacts-container #each-contact #name {
+  padding-left: 4px;
+}
+#view-contacts #view-contacts-container #each-contact #user {
+  padding-right: 7px;
+  float: inline-end;
+}
+#view-contacts #view-contacts-container #each-contact #subject {
+  padding-top: 17px;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+#view-contacts #view-contacts-container #each-contact #message {
+  padding-bottom: 20px;
+}
+#view-contacts #view-contacts-container #each-contact #email span {
+  color: blue;
+  cursor: pointer;
+}
+#view-contacts #view-contacts-container #each-contact #send-email {
+  margin-top: 20px;
+  display: inline-block;
+  border-radius: 3.5px;
+  height: 33px;
+  width: 110px;
+  background-color: var(--color2);
+  color: white;
+  outline: none;
+  font-size: 1.28rem;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  border: 2px solid var(--color2);
+}
+#view-contacts #view-contacts-container #each-contact #send-email:hover {
+  color: var(--color2);
+  background-color: var(--color1);
+}
+#view-contacts #view-contacts-container #each-contact #delete-contact {
+  margin-top: 20px;
+  display: inline-block;
+  border-radius: 3.5px;
+  height: 33px;
+  width: 110px;
+  background-color: red;
+  color: white;
+  outline: none;
+  font-size: 1.28rem;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+#view-contacts #view-contacts-container #each-contact #delete-contact:hover {
+  background-color: rgb(179, 16, 16);
 }
 
 a {

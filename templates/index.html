@@ -7,8 +7,8 @@
             {% if product['topSeller'] %}
             <div class="top-seller"><p>Top Seller</p></div>
             {% endif %}
-            <img class="product-image" src="{{product['images'][0]}}" alt="">
-            <img class="image-pattern" class="product-image" src="{{product['images_patterns'][0]}}" alt="">
+            <img class="product-image" src="{{product['images'][0]['image']}}" alt="">
+            <img class="image-pattern" class="product-image" src="{{product['image_patterns'][0]['image_pattern']}}" alt="">
             {% if product['discount'] %}
             <div class="discount"><p>Discount!!</p></div>
             {% endif %}
@@ -16,7 +16,7 @@
         <div class="text">
             <p class="name">{{product['name']}}</p>
             <p class="cost">${{product['cost'] - 0.01}}</p>
-            <button class="add">Add to Cart</button>
+            <button class="view">View Details</button>
         </div>
     </div></a>
     {% endfor %}

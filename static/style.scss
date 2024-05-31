@@ -270,7 +270,7 @@ html {
                 top: 25%;
                 font-size: 1.7rem;
             }
-            .add {
+            .view {
                 display: none;
                 position: absolute;
                 left: 50%;
@@ -578,7 +578,7 @@ html {
             font-size: 1.4rem;
             font-weight: 100;
         }
-        #input-message {
+        .input-message {
             border: 1px solid $color2;
             padding-top: 0.6rem;
             padding-left: 1.4rem;
@@ -591,7 +591,8 @@ html {
                 border: 2.8px solid $color2;
             }
         }
-        #submit {
+        .submit {
+            padding-left: 0;
             display: block;
             margin: auto;
             margin-top: 20px;
@@ -609,6 +610,9 @@ html {
                 background-color: $color1;
                 color: $color2;
             }
+        }
+        .error {
+            color: red;
         }
     }
 }
@@ -1190,6 +1194,44 @@ html {
                     background-color: $color1;
                 }
             }
+            #delete {
+                display: inline;
+                border-radius: 7px;
+                font-size: 1.6rem;
+                border: 2px solid rgba(0, 0, 0, 0.8);
+                background-color: $color2;
+                color: $color1;
+                font-weight: 700;
+                height: 3rem;
+                width: 44%;
+                margin-left: 38px;
+                margin-top: 20px;
+                white-space: nowrap;
+                cursor: pointer;
+                transition-duration: 0.3s;
+                &:hover {
+                    color: $color2;
+                    background-color: $color1;
+                }
+            }
+            #edit {
+                display: inline;
+                border-radius: 7px;
+                font-size: 1.6rem;
+                border: 2px solid rgba(0, 0, 0, 0.8);
+                background-color: $color1;
+                color: rgba(0, 0, 0, 0.8);
+                font-weight: 700;
+                height: 3rem;
+                width: 44%;
+                white-space: nowrap;
+                cursor: pointer;
+                transition-duration: 0.3s;
+                &:hover {
+                    color: $color1;
+                    background-color: $color2;
+                }
+            }
             #every-image-div {
                 margin-left: 38px;
                 margin-top: 20px;
@@ -1352,6 +1394,7 @@ html {
 
 #product-posting {
     margin-top: 60px;
+    margin-bottom: 60px;
     form {
         margin: auto;
         width: 350px;
@@ -1400,6 +1443,84 @@ html {
     }
 }
 
+#view-contacts {
+    margin-top: 40px;
+    margin-bottom: 50px;
+    h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 2.3rem;
+    }
+    #view-contacts-container {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        gap: 40px;
+        font-size: 1.3rem;
+        #each-contact {
+            width: 300px;
+            border: 2px solid black;
+            // box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 32px 4px;
+            padding: 10px;
+            #name {
+                padding-left: 4px;
+            }
+            #user {
+                padding-right: 7px;
+                float: inline-end;
+            }
+            #subject {
+                padding-top: 17px;
+                font-size: 1.6em;
+                font-weight: bold;
+            }
+            #message {
+                padding-bottom: 20px;
+            }
+            #email {
+                span {
+                    color: blue;
+                    cursor: pointer;
+                }
+            }
+            #send-email {
+                margin-top: 20px;
+                display: inline-block;
+                border-radius: 3.5px;
+                height: 33px;
+                width: 110px;
+                background-color: $color2;
+                color: white;
+                outline: none;
+                font-size: 1.28rem;
+                transition-duration: 0.3s;
+                cursor: pointer;
+                border: 2px solid $color2;
+                &:hover {
+                    color: $color2;
+                    background-color: $color1;
+                }
+            }
+            #delete-contact {
+                margin-top: 20px;
+                display: inline-block;
+                border-radius: 3.5px;
+                height: 33px;
+                width: 110px;
+                background-color: red;
+                color: white;
+                outline: none;
+                font-size: 1.28rem;
+                transition-duration: 0.3s;
+                cursor: pointer;
+                border: 2px solid transparent;
+                &:hover {
+                    background-color: rgb(179, 16, 16);
+                }
+            }
+        }
+    }
+}
 
 a {
     text-decoration: none;

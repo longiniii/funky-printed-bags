@@ -6,18 +6,39 @@
         <p id="main-text-message">You're welcome to contact us with any inquiry</p>
         <p id="main-text-phone-and-email"> Tel: 123-456-7890&#160;&#160;&#160;&#160; | &#160;&#160;&#160;&#160;info@mysite.com</p>
     </div>
-    <form id="information-form">
-        <label for="input-first-name" id="input-first-name-label">first name</label>
-        <input type="text" id="input-first-name">
-        <label for="input-last-name" id="input-last-name-label">last name*</label>
-        <input type="text" id="input-last-name" required>
-        <label for="input-email" id="input-email-label">email*</label>
-        <input type="email" id="input-email" required>
-        <label for="input-phone" id="input-phone-label">phone</label>
-        <input type="text" id="input-phone">
-        <label for="input-message" id="input-message-label">message*</label>
-        <textarea id="input-message" required></textarea>
-        <button id="submit" type="submit">Submit</button>
+    <form method="post" id="information-form">
+        {{ contact_form.hidden_tag() }}
+        {{ contact_form.first_name.label}}
+        {% for error in contact_form.errors.first_name %}
+        <p class="error">{{error}}</p>
+        {% endfor %}
+        {{ contact_form.first_name }}
+        {{ contact_form.last_name.label }}
+        {% for error in contact_form.errors.last_name %}
+        <p class="error">{{error}}</p>
+        {% endfor %}
+        {{ contact_form.last_name }}
+        {{ contact_form.email.label }}
+        {% for error in contact_form.errors.email %}
+        <p class="error">{{error}}</p>
+        {% endfor %}
+        {{ contact_form.email }}
+        {{ contact_form.phone.label }}
+        {% for error in contact_form.errors.phone %}
+        <p class="error">{{error}}</p>
+        {% endfor %}
+        {{ contact_form.phone }}
+        {{ contact_form.subject.label }}
+        {% for error in contact_form.errors.subject %}
+        <p class="error">{{error}}</p>
+        {% endfor %}
+        {{ contact_form.subject }}
+        {{ contact_form.message.label }}
+        {% for error in contact_form.errors.message %}
+        <p class="error">{{error}}</p>
+        {% endfor %}
+        {{ contact_form.message(class="input-message") }}
+        {{ contact_form.submit(class="submit")}}
     </form>
 </section>
 <script src="/static/contact.js"></script>

@@ -9,6 +9,7 @@
             <li><a href="/gift-card">Gift Card</a></li>
             <li><a href="/contact">Contact</a></li>
             <li><a href="/post-a-product">Post a product</a></li>
+            <li><a href="/view-contacts">View contacts</a></li>
         </ul>
     </nav>
     <div id="right">
@@ -19,7 +20,7 @@
             <a href="/product/{{product['id']}}">
                 <div class="nav-search-product">
                     <div class="nav-search-product-image">
-                        <img src="{{product['images'][0]}}" alt="">
+                        <img src="{{product['images'][0]['image']}}" alt="">
                     </div>
                     <div class="nav-search-product-information">
                         <p class="nav-search-product-name">{{product['name']}}</p>

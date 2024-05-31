@@ -20,7 +20,7 @@
             {% for error in product_posting_form.errors.how_much_discount %}
             <p class="validation">{{error}}</p>
             {% endfor %}
-            {{ product_posting_form.how_much_discount(placeholder=product_posting_form.how_much_discount.label.text, required=true)}}
+            {{ product_posting_form.how_much_discount(placeholder=product_posting_form.how_much_discount.label.text)}}
         </div>
         <div>
             {% for error in product_posting_form.errors.colors %}
