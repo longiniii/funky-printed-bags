@@ -3,16 +3,23 @@
 {% block body %}
 
 <section id="log-in">
-    <form action="">
+    <form method="post" action="">
+        {{log_in_form.hidden_tag()}}
         <h1>Twirly</h1>
         <h2>Welcome back!</h2>
-        <div id="username-or-email">
-            <label for="username-or-email-input">Username or Email</label>
-            <input id="username-or-email-input" type="text">
+        <div id="username-or-email-div">
+            {% for error in log_in_form.errors.username_or_email %}
+            <p class="validation">{{error}}</p>
+            {% endfor %}
+            {{ log_in_form.username_or_email.label }}
+            {{ log_in_form.username_or_email }}
         </div>
-        <div id="password">
-            <label for="password-input" id="password-label">Password</label>
-            <input id="password-iinput" type="password">
+        <div id="password-div">
+            {% for error in log_in_form.errors.password %}
+            <p class="validation">{{error}}</p>
+            {% endfor %}
+            {{ log_in_form.password.label }}
+            {{ log_in_form.password }}
         </div>
         <button>Log in</button>
     </form>

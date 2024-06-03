@@ -1,14 +1,19 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, EmailField, SubmitField, IntegerField, BooleanField, TextAreaField
-from wtforms.validators import data_required, length, email, equal_to, optional
+from wtforms.validators import data_required, length, equal_to, optional
 
 
 class RegistrationForm(FlaskForm):
     username = StringField("Username", validators=[data_required(message="Username is required")])
-    email = EmailField("Email", validators=[data_required(message="Email is required")])
+    email = StringField("Email", validators=[data_required(message="Email is required")])
     password = PasswordField("Password", validators=[data_required(message="Password is required"), length(min=8, max=64, message="the password's length must be between 8 and 64 characters")])
     repeat_password = PasswordField("Repeat Password", validators=[equal_to("password", message="the passwords should be the same")])
     submit = SubmitField("Sign up")
+
+
+class LoginForm(FlaskForm):
+    username_or_email= StringField("Username or Email", validators=[data_required(message="an Username or an Email is required")])
+    password = PasswordField("Password",  validators=[data_required(message="Password is required")])
 
 
 class PostingProduct(FlaskForm):

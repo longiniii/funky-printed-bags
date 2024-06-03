@@ -4,7 +4,7 @@ let products = document.querySelectorAll('.product')
 let productImages = document.querySelectorAll('.product-image')
 let productImagesPatterns = document.querySelectorAll('.image-pattern')
 let view = document.querySelectorAll('.view')
-let deleteProduct = document.querySelectorAll('.delete')
+// let deleteProduct = document.querySelectorAll('.delete')
 let timeLeftSection = document.getElementById('time-left')
 let timeLeft = document.getElementById('time-left-main')
 let timeLeftBoxes = document.querySelectorAll('.time-left-time')
@@ -25,11 +25,11 @@ products.forEach((element, index) => {
         productImages[index].style.display = 'block'
     });        element.addEventListener('mouseover', function() {
         view[index].style.display = 'block'
-        deleteProduct[index].style.display = 'block'
+        // deleteProduct[index].style.display = 'block'
     });
     element.addEventListener('mouseout', function() {
         view[index].style.display = 'none'
-        deleteProduct[index].style.display = 'none'
+        // deleteProduct[index].style.display = 'none'
     });
 });
 

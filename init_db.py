@@ -1,9 +1,14 @@
 from ext import app, db
-from models import Product, ProductColor, ProductImage, ProductImagePattern
+from models import Product, ProductColor, ProductImage, ProductImagePattern, User
 
 with app.app_context():
     db.drop_all()
     db.create_all()
+    new_user = User(username='admin', email='admin@gmail.com', password='admin', role='admin')
+    db.session.add(new_user)
+    db.session.commit()
+
+
     # image_patterns=['https://static.wixstatic.com/media/45d10e_35c84fb1d48540f1886b2ceb7a342c37~mv2_d_3500_1968_s_2.jpg/v1/fill/w_541,h_541,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/45d10e_35c84fb1d48540f1886b2ceb7a342c37~mv2_d_3500_1968_s_2.jpg']
     # product1 = Product(name="Camouflage",cost=27,how_much_discount=None)
     # color1 = ProductColor(color='Orange', product=product1)

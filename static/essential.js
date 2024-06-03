@@ -19,6 +19,9 @@ navCartCloseButton.addEventListener('click', function() {
 })
 
 
+
+
+
 searchInput.addEventListener('click', function() {
     checkIfFocused()
 })

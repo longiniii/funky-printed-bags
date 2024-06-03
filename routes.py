@@ -1,7 +1,9 @@
 from flask import render_template, request, redirect
-from forms import RegistrationForm, PostingProduct, ContactForm
-from ext import app, db
-from models import Contact, Product, ProductColor, ProductImage, ProductImagePattern
+from forms import RegistrationForm, LoginForm, PostingProduct, ContactForm
+from ext import app, db, login_manager
+from models import Contact, Product, ProductColor, ProductImage, ProductImagePattern, User
+from flask_login import current_user, login_required, login_user, logout_user
+from sqlalchemy import or_
 
 
 @app.context_processor
@@ -16,7 +18,11 @@ def index():
 
 
 @app.route("/post-a-product", methods=["GET", "POST"])
+@login_required
 def post_a_product():
+    if current_user.role != 'admin':
+        return redirect("/")
+    
     product_posting_form = PostingProduct()
     if product_posting_form.validate_on_submit():
         colors = product_posting_form.colors.data.split(' ')
@@ -51,13 +57,18 @@ def post_a_product():
 
 
 @app.route("/product/<product_id>")
+@login_required
 def product_details(product_id):
     product = Product.query.get(product_id)
     return render_template("product.html", product=product)
 
 
 @app.route("/delete-product/<product_id>")
+@login_required
 def delete_product(product_id):
+    if current_user.role != 'admin':
+        return redirect("/")
+    
     product = Product.query.get(product_id)
     db.session.delete(product)
     db.session.commit()
@@ -65,7 +76,11 @@ def delete_product(product_id):
 
 
 @app.route("/edit-product/<product_id>", methods=['GET', 'POST'])
+@login_required
 def edit_product(product_id):
+    if current_user.role != 'admin':
+        return redirect("/")
+    
     product = Product().query.get(product_id)
     colors = []
     images = []
@@ -121,6 +136,7 @@ def gift_card_checkout():
 
 
 @app.route("/contact", methods=["GET", "POST"])
+@login_required
 def contact():
     contact_form = ContactForm()
     if contact_form.validate_on_submit():
@@ -137,33 +153,57 @@ def contact():
 
 
 @app.route("/view-contacts")
+@login_required
 def view_contacts():
+    if current_user.role != 'admin':
+        return redirect("/")
+    
     contacts = Contact.query.all()
     return render_template("view-contacts.html", contacts=contacts)
 
 
 @app.route("/delete-contact/<contact_id>")
 def delete_contact(contact_id):
+    if current_user.role != 'admin':
+        return redirect("/")
+    
     contact = Contact.query.get(contact_id)
     db.session.delete(contact)
     db.session.commit()
     return redirect("/view-contacts")
 
 
-@app.route("/log-in")
-def log_in():
-    return render_template("log-in.html")
-
-
 @app.route("/sign-up", methods=["GET","POST"])
 def sign_in():
     registration_form = RegistrationForm()
     if registration_form.validate_on_submit():
-        print(registration_form.username.data)
+        if (User.query.filter(registration_form.username.data == User.username).first() == None):
+            new_user = User(username=registration_form.username.data, email=registration_form.email.data, password=registration_form.password.data)
+            db.session.add(new_user)
+            db.session.commit()
+            return redirect("/")
     return render_template("sign-up.html", registration_form=registration_form)
 
 
+@app.route("/log-in" , methods=["GET", "POST"])
+def log_in():
+    log_in_form = LoginForm()
+    if log_in_form.validate_on_submit():
+        user = User.query.filter(or_(log_in_form.username_or_email.data == User.username, log_in_form.username_or_email.data == User.email)).first()
+        if (user != None) & User.check_password(user, log_in_form.password.data):
+            login_user(user)
+            return redirect("/")
+    return render_template("log-in.html", log_in_form=log_in_form)
+
+
+@app.route("/log-out")
+@login_required
+def log_out():
+    logout_user()
+    return redirect("/")
+
 @app.route("/api/add-to-cart", methods=['POST'])
+@login_required
 def add_to_cart():
     post_data = request.get_json()
     return 'successfully added to cart'
