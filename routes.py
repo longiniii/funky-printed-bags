@@ -37,8 +37,8 @@ def post_a_product():
             name = product_posting_form.name.data, 
             cost = product_posting_form.cost.data, 
             how_much_discount = howMuchDiscount, 
-            added_by = 1, 
-            edited_by = 1)
+            added_by = current_user.id, 
+            edited_by = current_user.id)
         db.session.add(new_product)
         db.session.commit()
         for color in colors:
@@ -105,8 +105,8 @@ def edit_product(product_id):
         product.name = product_posting_form.name.data
         product.cost = product_posting_form.cost.data
         product.how_much_discount = howMuchDiscount
-        product.added_by = 1
-        product.edited_by = 1
+        product.added_by = product.id
+        product.edited_by = current_user.id
         # delete
         for color in product.colors:
             db.session.delete(color)
