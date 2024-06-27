@@ -1,15 +1,17 @@
 from flask import render_template, request, redirect
-from forms import RegistrationForm, LoginForm, PostingProduct, ContactForm
+from forms import RegistrationForm, LoginForm, PostingProduct, ContactForm, RatingForm
 from ext import app, db, login_manager
-from models import Contact, Product, ProductColor, ProductImage, ProductImagePattern, User
+from models import Contact, Product, ProductColor, ProductImage, ProductImagePattern, User, Cart, CartProduct, Review
 from flask_login import current_user, login_required, login_user, logout_user
 from sqlalchemy import or_
+from datetime import datetime
 
 
 @app.context_processor
 def global_variable():
     products = Product.query.all()
-    return dict(products=products)
+    carts = Cart.query.all()
+    return dict(products=products,cart=carts)
 
 
 @app.route("/")
@@ -56,11 +58,26 @@ def post_a_product():
     return render_template("post-a-product.html", product_posting_form=product_posting_form)
 
 
-@app.route("/product/<product_id>")
+@app.route("/product/<product_id>", methods=["GET", "POST"])
 @login_required
 def product_details(product_id):
     product = Product.query.get(product_id)
-    return render_template("product.html", product=product)
+    rating_form = RatingForm()
+    if rating_form.validate_on_submit():
+        product = Product.query.get(product_id)
+        user = User.query.get(current_user.id)
+        print(user)
+        theReview = None
+        if rating_form.review.data.strip() != '':
+            theReview = rating_form.review.data
+        new_review = Review(review = theReview,
+                            rating = rating_form.rating.data,
+                            date = datetime.now(),
+                            product = product,
+                            user = user,)
+        db.session.add(new_review)
+        db.session.commit()
+    return render_template("product.html", product=product, rating_form=rating_form)
 
 
 @app.route("/delete-product/<product_id>")
@@ -141,6 +158,7 @@ def contact():
     contact_form = ContactForm()
     if contact_form.validate_on_submit():
         new_contact = Contact(
+            user = current_user.id,
             first_name=contact_form.first_name.data, 
             last_name=contact_form.last_name.data, 
             email=contact_form.email.data,
@@ -174,12 +192,14 @@ def delete_contact(contact_id):
 
 
 @app.route("/sign-up", methods=["GET","POST"])
-def sign_in():
+def sign_up():
     registration_form = RegistrationForm()
     if registration_form.validate_on_submit():
         if (User.query.filter(registration_form.username.data == User.username).first() == None):
             new_user = User(username=registration_form.username.data, email=registration_form.email.data, password=registration_form.password.data)
+            #new_cart = Cart(user_id=new_user.id)
             db.session.add(new_user)
+            #db.session.add(new_cart) mere daaaaaaaaaaaaaaaaaaaamateeeeeeeeeeeee
             db.session.commit()
             return redirect("/")
     return render_template("sign-up.html", registration_form=registration_form)
@@ -206,4 +226,8 @@ def log_out():
 @login_required
 def add_to_cart():
     post_data = request.get_json()
-    return 'successfully added to cart'
+    print(post_data['productQuantity'])
+    new_cart_product = CartProduct(product_id=post_data['productId'], quantity=post_data['productQuantity'], cart_id=current_user.id)
+    db.session.add(new_cart_product)
+    db.session.commit()
+    return 'the product has been added, slay!'

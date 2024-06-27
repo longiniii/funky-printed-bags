@@ -1201,8 +1201,8 @@ html {
                 border-radius: 7px;
                 font-size: 1.6rem;
                 border: 2px solid rgba(0, 0, 0, 0.8);
-                background-color: $color2;
-                color: $color1;
+                background-color: $color1;
+                color: $color2;
                 font-weight: 700;
                 height: 3rem;
                 width: 44%;
@@ -1212,8 +1212,8 @@ html {
                 cursor: pointer;
                 transition-duration: 0.3s;
                 &:hover {
-                    color: $color2;
-                    background-color: $color1;
+                    color: $color1;
+                    background-color: $color2;
                 }
             }
             #edit {
@@ -1221,8 +1221,8 @@ html {
                 border-radius: 7px;
                 font-size: 1.6rem;
                 border: 2px solid rgba(0, 0, 0, 0.8);
-                background-color: $color1;
-                color: rgba(0, 0, 0, 0.8);
+                background-color: $color2;
+                color: $color1;
                 font-weight: 700;
                 height: 3rem;
                 width: 44%;
@@ -1230,8 +1230,8 @@ html {
                 cursor: pointer;
                 transition-duration: 0.3s;
                 &:hover {
-                    color: $color1;
-                    background-color: $color2;
+                    color: $color2;
+                    background-color: $color1;
                 }
             }
             #every-image-div {
@@ -1251,6 +1251,142 @@ html {
                             cursor: pointer;
                         }
                     }
+                }
+            }
+        }
+    }
+    #product-comment-and-rating-section {
+        margin-top: 50px;
+        h3 {
+            font-size: 25px;
+            padding-bottom: 10px;
+        }
+        form {
+            display: flex;
+            flex-flow: row wrap;
+            height: 90px;
+            #commenting {
+                flex: 3;
+                textarea {
+                    width: 100%;
+                    height: 100%;
+                    resize: none;
+                    outline: none;
+                    border: 2px solid rgba(125, 125, 125, 0.5);
+                    padding-left: 10px;
+                    padding-top: 6px;
+                    border-radius: 6px;
+                    &:focus {
+                        border-bottom: 2px solid $color2;
+                    }
+                }
+            }
+            #rating-and-submitting {
+                flex: 1;
+                position: relative;
+                .rate {
+                    position: absolute;
+                    left: 50%;
+                    bottom: 0;
+                    transform: translateX(-50%);
+                    display: block;
+                    border-radius: 3.5px;
+                    height: 35px;
+                    width: 100px;
+                    background-color: $color2;
+                    color: white;
+                    outline: none;
+                    font-size: 1.45rem;
+                    transition-duration: 0.3s;
+                    cursor: pointer;
+                    border: 2px solid $color2;
+                    &:hover {
+                        color: $color2;
+                        background-color: $color1;
+                    }
+                    &:disabled {
+                        border: none;
+                        cursor: default;
+                        background-color: rgb(204, 204, 204);
+                        border: 2px solid 204, 204, 204;
+                        &:hover {
+                            color: $color1;
+                            background-color: 204, 204, 204;
+                        }
+                    }
+                }
+                #rating {
+                    position: absolute;
+                    left: 50%;
+                    top: 5px;
+                    transform: translateX(-50%);
+                    width: 185px;
+                    .rating-label {
+                        cursor: pointer;
+                        font-size: 27px;
+                    }
+                    .rating-label-solid {
+                        display: none;
+                    }
+                    input {
+                        visibility: hidden;
+                        width: 2px;
+                    }
+                }
+            }
+        }
+        h2 {
+            font-size: 24px;
+            padding-top: 30px;
+            padding-bottom: 10px;
+            span {
+                font-size: 23px;
+            }
+        }
+        #review-section {
+            background-color: rgb(250, 252, 251);
+            padding-top: 20px;
+            padding-bottom: 20px;
+            .review-and-rating {
+                margin: auto;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                width: 92%;
+                background-color: white;
+                position: relative;
+                .image-username-and-rating {
+                    display: flex;
+                    flex-flow: row wrap;
+                    .image {
+                        img {
+                            display: inline;
+                            height: 40px;
+                            object-fit: cover;
+                        }
+                    }
+                    .username-and-rating {
+                        padding-top: 7px;
+                        .username {
+                            display: inline-block;
+                            font-size: 13px;
+                            font-weight: 700;
+                        }
+                        .rating {
+                            padding-left: 4px;
+                            display: inline-block;
+                        }
+                    }
+                }
+                .review {
+                    padding-left: 13px;
+                    font-size: 15px;
+                    padding-top: 5px;
+                    padding-bottom: 8px;
+                }
+                .date {
+                    position: absolute;
+                    right: 0;
+                    top: 10px;
                 }
             }
         }

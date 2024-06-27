@@ -52,7 +52,3 @@ let checkIfFocused = () => {
         }
     }, 20);
 }
-
-
-
-

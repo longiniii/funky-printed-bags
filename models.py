@@ -7,7 +7,7 @@ class Contact(db.Model):
     __tablename__ = "contacts"
 
     id = db.Column(db.Integer(), primary_key=True)
-    user = db.Column(db.String(), nullable=False, default=1)
+    user = db.Column(db.String(), nullable=False)
     first_name = db.Column(db.String(), nullable=False)
     last_name = db.Column(db.String(), nullable=False)
     email = db.Column(db.String(), nullable=False)
@@ -28,6 +28,7 @@ class Product(db.Model):
     colors = db.relationship("ProductColor", backref="product", lazy=True)
     images = db.relationship("ProductImage", backref="product", lazy=True)
     image_patterns = db.relationship("ProductImagePattern", backref="product", lazy=True)
+    reviews = db.relationship("Review", backref="product", lazy=True)
 
 class ProductColor(db.Model):
     __tablename__ = "product_colors"
@@ -59,6 +60,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(), nullable=False)
     password = db.Column(db.String(), nullable=False)
     role = db.Column(db.String(), nullable=True)
+    #cart = db.relationship("Cart", backref='user', lazy=True)
+    reviews = db.relationship("Review", backref="user", lazy=True)
 
     def __init__(self, username, email, password, role='guest'):
         self.username = username
@@ -71,3 +74,30 @@ class User(db.Model, UserMixin):
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
+
+
+class Cart(db.Model):
+    __tablename__ = "carts"
+
+    id = db.Column(db.Integer(), primary_key=True)
+    user_id = db.Column(db.Integer(), db.ForeignKey('users.id'),nullable=False)
+    cart_products = db.relationship("CartProduct", backref="cart", lazy=True)
+
+class CartProduct(db.Model):
+    __tablename__ = "cart_products"
+
+    id = db.Column(db.Integer(), primary_key=True)
+    product_id = db.Column(db.Integer(), nullable=False)
+    cart_id = db.Column(db.Integer(), db.ForeignKey("carts.id"), nullable=False)
+    quantity = db.Column(db.Integer(), nullable=False)
+
+
+class Review(db.Model):
+    __tablename__ = "reviews"
+
+    id = db.Column(db.Integer(), primary_key=True)
+    review = db.Column(db.String(), nullable=True)
+    rating = db.Column(db.Integer(), nullable=False)
+    date = db.Column(db.DateTime(), nullable=False)
+    product_id = db.Column(db.Integer(), db.ForeignKey("products.id"))
+    user_id = db.Column(db.Integer(), db.ForeignKey("users.id"))

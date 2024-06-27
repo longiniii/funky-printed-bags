@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import StringField, PasswordField, EmailField, SubmitField, IntegerField, BooleanField, TextAreaField
+from wtforms.fields import StringField, PasswordField, SubmitField, IntegerField, TextAreaField, RadioField
 from wtforms.validators import data_required, length, equal_to, optional
 
 
@@ -34,3 +34,9 @@ class ContactForm(FlaskForm):
     subject = StringField("subject*", validators=[data_required("subject is required")])
     message = TextAreaField("message*", validators=[data_required(message="message is required")])
     submit = SubmitField("Submit")
+
+
+class RatingForm(FlaskForm):
+    review = TextAreaField("comment something niga")
+    rating = RadioField(choices=[(1, ''), (2, ''), (3, ''), (4, ''), (5, '')], validators=[data_required()])
+    submit = SubmitField("Rate")

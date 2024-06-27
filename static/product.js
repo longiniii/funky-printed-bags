@@ -4,6 +4,8 @@ let quantity = document.getElementById('quantity')
 let add = document.getElementById('add')
 let addToCart = document.getElementById("add-to-cart")
 let remove = document.getElementById('remove')
+let ratingLabel = document.querySelectorAll(".rating-label")
+let ratingSubmitButton = document.querySelectorAll(".rate")[0]
 
 let cartSlider = document.getElementById('cart-slider')
 
@@ -37,25 +39,7 @@ remove.addEventListener('click', function() {
 addToCart.addEventListener('click', function() {
     let currentProductId;
     currentProductId = window.location.href.split('/')[window.location.href.split('/').length - 1]
-    console.log(currentProductId)
-    fetch('/api/add-to-cart', {
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(
-            {
-                userId: 122,
-                productId: currentProductId
-            }
-        ),
-        method: 'post'
-    })
-    .then(res => res.text())
-    .then(data => console.log(data))
-})
 
-
-addToCart.addEventListener('click', function() {
     cartSlider.style.right = '0'
     cartSlider.classList.add('cart-slider-opening-animation')
     cartSlider.classList.remove('cart-slider-closing-animation')
@@ -65,8 +49,8 @@ addToCart.addEventListener('click', function() {
         },
         body: JSON.stringify(
             {
-                userId: 122,
-                productId: 12
+                productQuantity: quantity.value,
+                productId: currentProductId
             }
         ),
         method: 'post'
@@ -74,3 +58,35 @@ addToCart.addEventListener('click', function() {
     .then(res => res.text())
     .then(data => console.log(data))
 })
+
+ratingSubmitButton.disabled = true
+
+ratingLabel.forEach(item => {
+    item.addEventListener("click", function() {
+        ratingSubmitButton.disabled = false
+        ratingLabel.forEach(element => {
+            if (item.id.includes("rating-label-solid-")) {
+                if (element.id.includes("rating-label-solid-")) {
+                    if (element.id.split("rating-label-solid-")[1] <= item.id.split("rating-label-solid-")[1])  {
+                        element.style.display = "inline-block"
+                    }
+                    if (element.id.split("rating-label-solid-")[1] > item.id.split("rating-label-solid-")[1])  {
+                        element.style.display = "none"
+                    }
+                } else {
+                    if (element.id.split("rating-label-")[1] > item.id.split("rating-label-solid-")[1])  {
+                        element.style.display = "inline-block"
+                    }
+                }
+            } else {
+                if (element.id.split("rating-label-solid-")[1] <= item.id.split("rating-label-")[1])  {
+                    element.style.display = "inline-block"
+                } else { 
+                    if (element.id.split("rating-label-")[1] <= item.id.split("rating-label-")[1])  {
+                        element.style.display = "none"
+                    }
+                }
+            }
+        });
+    })
+});

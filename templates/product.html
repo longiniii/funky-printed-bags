@@ -81,6 +81,51 @@
             <button onclick="location.assign('/edit-product/{{id}}')" id="edit">Edit</button>
         </div>
     </div>
+    <div id="product-comment-and-rating-section">
+        <h3>leave a review</h3>
+        <form method="post">
+            {{ rating_form.hidden_tag() }}
+            <div id="commenting">
+                {{rating_form.review(placeholder=rating_form.review.label.text)}}
+            </div>
+            <div id="rating-and-submitting">
+                <div id="rating">
+                    {% for choice in rating_form.rating %}
+                    {{choice.label(class="fa-solid fa-star rating-label rating-label-solid", id="rating-label-solid-" + choice.id.split("rating-")[1])}}
+                    {{choice.label(class="fa-regular fa-star rating-label", id="rating-label-" + choice.id.split("rating-")[1])}}
+                    {{choice}}
+                    {% endfor %}
+                </div>
+                {{rating_form.submit(class="rate")}}
+            </div>
+        </form>
+        <h2><span>{{product['reviews'] | count}}</span> reviews</h2>
+        <div id="review-section">
+            {% for review in product['reviews'] %}
+            <div class="review-and-rating">
+                <div class="image-username-and-rating">
+                    <div class="image">
+                        <img src="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg" alt="">
+                    </div>
+                    <div class="username-and-rating">
+                        <p class="username">@{{review['user']['username']}}</p>
+                        <p class="rating">
+                            {% for solid_star in range(review['rating']) %}
+                            <i class="fa-solid fa-star"></i>
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+                {% if review['review'] != None %}
+                <p class="review">
+                    {{ review['review']}}
+                </p>
+                {% endif %}
+                <p class="date">{{(review['date'])}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </section>
 <script type="module" src="/static/product.js"></script>
 {% endblock %}

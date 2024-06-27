@@ -1200,8 +1200,8 @@ html {
   border-radius: 7px;
   font-size: 1.6rem;
   border: 2px solid rgba(0, 0, 0, 0.8);
-  background-color: var(--color2);
-  color: var(--color1);
+  background-color: var(--color1);
+  color: var(--color2);
   font-weight: 700;
   height: 3rem;
   width: 44%;
@@ -1212,16 +1212,16 @@ html {
   transition-duration: 0.3s;
 }
 #product-information #about-the-product #price-and-more #delete:hover {
-  color: var(--color2);
-  background-color: var(--color1);
+  color: var(--color1);
+  background-color: var(--color2);
 }
 #product-information #about-the-product #price-and-more #edit {
   display: inline;
   border-radius: 7px;
   font-size: 1.6rem;
   border: 2px solid rgba(0, 0, 0, 0.8);
-  background-color: var(--color1);
-  color: rgba(0, 0, 0, 0.8);
+  background-color: var(--color2);
+  color: var(--color1);
   font-weight: 700;
   height: 3rem;
   width: 44%;
@@ -1230,8 +1230,8 @@ html {
   transition-duration: 0.3s;
 }
 #product-information #about-the-product #price-and-more #edit:hover {
-  color: var(--color1);
-  background-color: var(--color2);
+  color: var(--color2);
+  background-color: var(--color1);
 }
 #product-information #about-the-product #price-and-more #every-image-div {
   margin-left: 38px;
@@ -1251,6 +1251,141 @@ html {
   height: 100%;
   width: 68px;
   cursor: pointer;
+}
+#product-information #product-comment-and-rating-section {
+  margin-top: 50px;
+}
+#product-information #product-comment-and-rating-section h3 {
+  font-size: 25px;
+  padding-bottom: 10px;
+}
+#product-information #product-comment-and-rating-section form {
+  display: flex;
+  flex-flow: row wrap;
+  height: 90px;
+}
+#product-information #product-comment-and-rating-section form #commenting {
+  flex: 3;
+}
+#product-information #product-comment-and-rating-section form #commenting textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  outline: none;
+  border: 2px solid rgba(125, 125, 125, 0.5);
+  padding-left: 10px;
+  padding-top: 6px;
+  border-radius: 6px;
+}
+#product-information #product-comment-and-rating-section form #commenting textarea:focus {
+  border-bottom: 2px solid var(--color2);
+}
+#product-information #product-comment-and-rating-section form #rating-and-submitting {
+  flex: 1;
+  position: relative;
+}
+#product-information #product-comment-and-rating-section form #rating-and-submitting .rate {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: block;
+  border-radius: 3.5px;
+  height: 35px;
+  width: 100px;
+  background-color: var(--color2);
+  color: white;
+  outline: none;
+  font-size: 1.45rem;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  border: 2px solid var(--color2);
+}
+#product-information #product-comment-and-rating-section form #rating-and-submitting .rate:hover {
+  color: var(--color2);
+  background-color: var(--color1);
+}
+#product-information #product-comment-and-rating-section form #rating-and-submitting .rate:disabled {
+  border: none;
+  cursor: default;
+  background-color: rgb(204, 204, 204);
+  border: 2px solid 204, 204, 204;
+}
+#product-information #product-comment-and-rating-section form #rating-and-submitting .rate:disabled:hover {
+  color: var(--color1);
+  background-color: 204, 204, 204;
+}
+#product-information #product-comment-and-rating-section form #rating-and-submitting #rating {
+  position: absolute;
+  left: 50%;
+  top: 5px;
+  transform: translateX(-50%);
+  width: 185px;
+}
+#product-information #product-comment-and-rating-section form #rating-and-submitting #rating .rating-label {
+  cursor: pointer;
+  font-size: 27px;
+}
+#product-information #product-comment-and-rating-section form #rating-and-submitting #rating .rating-label-solid {
+  display: none;
+}
+#product-information #product-comment-and-rating-section form #rating-and-submitting #rating input {
+  visibility: hidden;
+  width: 2px;
+}
+#product-information #product-comment-and-rating-section h2 {
+  font-size: 24px;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+#product-information #product-comment-and-rating-section h2 span {
+  font-size: 23px;
+}
+#product-information #product-comment-and-rating-section #review-section {
+  background-color: rgb(250, 252, 251);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+#product-information #product-comment-and-rating-section #review-section .review-and-rating {
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 92%;
+  background-color: white;
+  position: relative;
+}
+#product-information #product-comment-and-rating-section #review-section .review-and-rating .image-username-and-rating {
+  display: flex;
+  flex-flow: row wrap;
+}
+#product-information #product-comment-and-rating-section #review-section .review-and-rating .image-username-and-rating .image img {
+  display: inline;
+  height: 40px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#product-information #product-comment-and-rating-section #review-section .review-and-rating .image-username-and-rating .username-and-rating {
+  padding-top: 7px;
+}
+#product-information #product-comment-and-rating-section #review-section .review-and-rating .image-username-and-rating .username-and-rating .username {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+}
+#product-information #product-comment-and-rating-section #review-section .review-and-rating .image-username-and-rating .username-and-rating .rating {
+  padding-left: 4px;
+  display: inline-block;
+}
+#product-information #product-comment-and-rating-section #review-section .review-and-rating .review {
+  padding-left: 13px;
+  font-size: 15px;
+  padding-top: 5px;
+  padding-bottom: 8px;
+}
+#product-information #product-comment-and-rating-section #review-section .review-and-rating .date {
+  position: absolute;
+  right: 0;
+  top: 10px;
 }
 
 #log-in {
