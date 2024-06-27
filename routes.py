@@ -11,6 +11,9 @@ from datetime import datetime
 def global_variable():
     products = Product.query.all()
     carts = Cart.query.all()
+    search_term = request.args.get("search")
+    if search_term != None:
+        products = Product.query.filter(Product.name.contains(search_term.strip().lower()))
     return dict(products=products,cart=carts)
 
 

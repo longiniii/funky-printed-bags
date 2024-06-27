@@ -25,11 +25,14 @@ navCartCloseButton.addEventListener('click', function() {
 searchInput.addEventListener('click', function() {
     checkIfFocused()
 })
-searchInput.addEventListener('input', function() {
-    productsData.forEach(item => {
-        console.log(item)
-    });
+
+searchInput.addEventListener('keyup', function(event) {
+    if (event.key == "Enter") {
+        let searchTerm = searchInput.value
+        window.location = "/" + "?search=" + searchTerm
+    }
 })
+
 
 let checkIfFocused = () => {
     let isMouseOverResults = false;

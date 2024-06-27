@@ -121,7 +121,8 @@
                     {{ review['review']}}
                 </p>
                 {% endif %}
-                <p class="date">{{(review['date'])}}</p>
+                {% set date = (review['date'] | string).split(" ")[0] %}
+                <p class="date">{{date}}</p>
             </div>
             {% endfor %}
         </div>
