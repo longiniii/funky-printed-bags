@@ -1099,9 +1099,16 @@ html {
         }
         #price-and-more {
             flex: 1;
+            position: relative;
             h1 {
                 padding-left: 38px;
-                font-size: 3.6rem;
+                font-size: 3.4rem;
+            }
+            #rating {
+                position: absolute;
+                right: 10px;
+                top: 14px;
+                font-size: 21px;
             }
             p {
                 padding-left: 38px;
@@ -1365,28 +1372,39 @@ html {
                         }
                     }
                     .username-and-rating {
+                        flex: 1;
                         padding-top: 7px;
+                        position: relative;
                         .username {
                             display: inline-block;
                             font-size: 13px;
                             font-weight: 700;
                         }
                         .rating {
-                            padding-left: 4px;
                             display: inline-block;
+                            padding-left: 4px;
+                        }
+                        .date {
+                            position: absolute;
+                            right: 0;
+                            top: 10px;
                         }
                     }
                 }
                 .review {
+                    width: 91%;
                     padding-left: 13px;
                     font-size: 15px;
                     padding-top: 5px;
                     padding-bottom: 8px;
                 }
-                .date {
+                .delete-review {
                     position: absolute;
-                    right: 0;
-                    top: 10px;
+                    right: 0px;
+                    top: 33px;
+                    color: red;
+                    font-size: 15px;
+                    cursor: pointer;
                 }
             }
         }

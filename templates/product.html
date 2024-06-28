@@ -52,6 +52,7 @@
         </div>
         <div id="price-and-more">
             <h1>{{product['name']}}</h1>
+            <div id="rating">{{average_rating}}<i class="fa-solid fa-star"></i></div>
             <div id="description">
                 <p>I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.</p>
             </div>
@@ -114,6 +115,8 @@
                             <i class="fa-solid fa-star"></i>
                             {% endfor %}
                         </p>
+                        {% set date = (review['date'] | string).split(" ")[0] %}
+                        <p class="date">{{date}}</p>
                     </div>
                 </div>
                 {% if review['review'] != None %}
@@ -121,8 +124,9 @@
                     {{ review['review']}}
                 </p>
                 {% endif %}
-                {% set date = (review['date'] | string).split(" ")[0] %}
-                <p class="date">{{date}}</p>
+                {% if current_user.id == review['user'].id or current_user.role == "admin" %}
+                <p reviewId="{{review['id']}}" userId="{{review['user'].id}}" class="delete-review">delete</p>
+                {% endif %}
             </div>
             {% endfor %}
         </div>

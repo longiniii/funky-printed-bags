@@ -27,7 +27,7 @@
         <input id="item-search" type="search" placeholder="search..." >
         <div id="nav-product-search-results">
             <h3>Trending products</h3>
-            {% for product in products %}
+            {% for product in top_rated_products %}
             <a href="/product/{{product['id']}}">
                 <div class="nav-search-product">
                     <div class="nav-search-product-image">

@@ -1097,10 +1097,17 @@ html {
 }
 #product-information #about-the-product #price-and-more {
   flex: 1;
+  position: relative;
 }
 #product-information #about-the-product #price-and-more h1 {
   padding-left: 38px;
-  font-size: 3.6rem;
+  font-size: 3.4rem;
+}
+#product-information #about-the-product #price-and-more #rating {
+  position: absolute;
+  right: 10px;
+  top: 14px;
+  font-size: 21px;
 }
 #product-information #about-the-product #price-and-more p {
   padding-left: 38px;
@@ -1365,7 +1372,9 @@ html {
      object-fit: cover;
 }
 #product-information #product-comment-and-rating-section #review-section .review-and-rating .image-username-and-rating .username-and-rating {
+  flex: 1;
   padding-top: 7px;
+  position: relative;
 }
 #product-information #product-comment-and-rating-section #review-section .review-and-rating .image-username-and-rating .username-and-rating .username {
   display: inline-block;
@@ -1373,19 +1382,28 @@ html {
   font-weight: 700;
 }
 #product-information #product-comment-and-rating-section #review-section .review-and-rating .image-username-and-rating .username-and-rating .rating {
-  padding-left: 4px;
   display: inline-block;
+  padding-left: 4px;
+}
+#product-information #product-comment-and-rating-section #review-section .review-and-rating .image-username-and-rating .username-and-rating .date {
+  position: absolute;
+  right: 0;
+  top: 10px;
 }
 #product-information #product-comment-and-rating-section #review-section .review-and-rating .review {
+  width: 91%;
   padding-left: 13px;
   font-size: 15px;
   padding-top: 5px;
   padding-bottom: 8px;
 }
-#product-information #product-comment-and-rating-section #review-section .review-and-rating .date {
+#product-information #product-comment-and-rating-section #review-section .review-and-rating .delete-review {
   position: absolute;
-  right: 0;
-  top: 10px;
+  right: 0px;
+  top: 33px;
+  color: red;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 #log-in {

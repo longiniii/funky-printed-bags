@@ -9,17 +9,21 @@ from datetime import datetime
 
 @app.context_processor
 def global_variable():
-    products = Product.query.all()
+    top_rated_products = Product.query.all()
+    n = len(top_rated_products)
+    for i in range(n - 1):
+        for j in range(0, n - i - 1):
+            if get_products_average_rating(top_rated_products[j]) < get_products_average_rating(top_rated_products[j + 1]):
+                top_rated_products[j], top_rated_products[j + 1] = top_rated_products[j + 1], top_rated_products[j]
+
     carts = Cart.query.all()
-    search_term = request.args.get("search")
-    if search_term != None:
-        products = Product.query.filter(Product.name.contains(search_term.strip().lower()))
-    return dict(products=products,cart=carts)
+    return dict(top_rated_products=top_rated_products[:10],cart=carts)
 
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    products = Product.query.all()
+    return render_template("index.html", products=products)
 
 
 @app.route("/post-a-product", methods=["GET", "POST"])
@@ -27,7 +31,6 @@ def index():
 def post_a_product():
     if current_user.role != 'admin':
         return redirect("/")
-    
     product_posting_form = PostingProduct()
     if product_posting_form.validate_on_submit():
         colors = product_posting_form.colors.data.split(' ')
@@ -61,11 +64,24 @@ def post_a_product():
     return render_template("post-a-product.html", product_posting_form=product_posting_form)
 
 
+def get_products_average_rating(product):
+    average_rating = 0
+    length = 0
+    for review in product.reviews:
+        average_rating += review.rating
+        length += 1
+    if length != 0:
+        average_rating = average_rating / length
+    return average_rating
+
+
 @app.route("/product/<product_id>", methods=["GET", "POST"])
 @login_required
 def product_details(product_id):
+    products = Product.query.all()
     product = Product.query.get(product_id)
     rating_form = RatingForm()
+    average_rating = get_products_average_rating(product)
     if rating_form.validate_on_submit():
         product = Product.query.get(product_id)
         user = User.query.get(current_user.id)
@@ -80,7 +96,7 @@ def product_details(product_id):
                             user = user,)
         db.session.add(new_review)
         db.session.commit()
-    return render_template("product.html", product=product, rating_form=rating_form)
+    return render_template("product.html", products=products, product=product, average_rating=str(average_rating)[:3], rating_form=rating_form)
 
 
 @app.route("/delete-product/<product_id>")
@@ -234,3 +250,14 @@ def add_to_cart():
     db.session.add(new_cart_product)
     db.session.commit()
     return 'the product has been added, slay!'
+
+@app.route("/api/delete-review/<user_id>/<review_id>", methods=["DELETE"])
+@login_required
+def delete_review(user_id, review_id):
+    if current_user.id == user_id or current_user.role == "admin":
+        print(review_id)
+        theReviewToBeDeleted = Review.query.get(review_id)
+        db.session.delete(theReviewToBeDeleted)
+        db.session.commit()
+        return "the review has been deleted"
+    return "current user can't delete the review"

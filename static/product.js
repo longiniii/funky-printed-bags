@@ -6,6 +6,7 @@ let addToCart = document.getElementById("add-to-cart")
 let remove = document.getElementById('remove')
 let ratingLabel = document.querySelectorAll(".rating-label")
 let ratingSubmitButton = document.querySelectorAll(".rate")[0]
+let deleteReview = document.querySelectorAll(".delete-review")
 
 let cartSlider = document.getElementById('cart-slider')
 
@@ -88,5 +89,19 @@ ratingLabel.forEach(item => {
                 }
             }
         });
+    })
+});
+
+deleteReview.forEach(item => {
+    item.addEventListener("click", function() {
+        let userId = item.getAttribute("userId")
+        let reviewId = item.getAttribute("reviewId")
+        fetch(`/api/delete-review/${userId}/${reviewId}`, {
+            method: "delete"
+        })
+        .then(res => res.text())
+        .then(data => {
+            item.parentElement.style.display = "none"
+        })
     })
 });
