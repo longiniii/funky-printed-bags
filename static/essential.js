@@ -5,6 +5,7 @@ let searchInput = document.getElementById('item-search')
 let searchResults = document.getElementById('nav-product-search-results')
 let productsData = document.querySelectorAll('.nav-search-product')
 let searchedProducts = productsData
+let cartProductDelete = document.querySelectorAll(".cart-product-delete")
 
 navCartOpenButton.addEventListener('click', function() {
     cartSlider.style.right = '0'
@@ -55,3 +56,16 @@ let checkIfFocused = () => {
         }
     }, 20);
 }
+
+cartProductDelete.forEach(item => {
+    item.addEventListener("click", function() {
+        let cartProductId = item.getAttribute("cartProductId")
+        fetch(`/api/delete-cart-product/${cartProductId}`, {
+            method: "delete"
+        })
+        .then(res => res.text())
+        .then(data => {
+            item.parentElement.parentElement.style.display = "none"
+        })    
+    })
+});

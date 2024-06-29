@@ -7,7 +7,6 @@ let remove = document.getElementById('remove')
 let ratingLabel = document.querySelectorAll(".rating-label")
 let ratingSubmitButton = document.querySelectorAll(".rate")[0]
 let deleteReview = document.querySelectorAll(".delete-review")
-
 let cartSlider = document.getElementById('cart-slider')
 
 mainImage.src = images[0].src
@@ -105,3 +104,4 @@ deleteReview.forEach(item => {
         })
     })
 });
+

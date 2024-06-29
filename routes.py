@@ -274,8 +274,10 @@ def delete_review(user_id, review_id):
     return "current user can't delete the review"
 
 
-app.route("/api/delete-cart-product/<cart_product_id>")
+@app.route("/api/delete-cart-product/<cart_product_id>", methods=["DELETE"])
 @login_required
 def delete_cart_product(cart_product_id):
-    CartProduct.query.delete(cart_product_id)
+    cart_product = CartProduct.query.get(cart_product_id)
+    db.session.delete(cart_product)
+    db.session.commit()
     return "deleted cart product succesfully"

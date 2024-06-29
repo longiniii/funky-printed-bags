@@ -380,6 +380,7 @@ html {
 #cart-slider #cart-slider-products {
   flex: 5;
   background-color: var(--color1);
+  overflow-y: auto;
 }
 #cart-slider #cart-slider-products .cart-product {
   height: 85px;
