@@ -60,7 +60,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(), nullable=False)
     password = db.Column(db.String(), nullable=False)
     role = db.Column(db.String(), nullable=True)
-    #cart = db.relationship("Cart", backref='user', lazy=True)
+    cart_products = db.relationship("CartProduct", backref="user", lazy=True)
     reviews = db.relationship("Review", backref="user", lazy=True)
 
     def __init__(self, username, email, password, role='guest'):
@@ -76,19 +76,12 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 
-class Cart(db.Model):
-    __tablename__ = "carts"
-
-    id = db.Column(db.Integer(), primary_key=True)
-    user_id = db.Column(db.Integer(), db.ForeignKey('users.id'),nullable=False)
-    cart_products = db.relationship("CartProduct", backref="cart", lazy=True)
-
 class CartProduct(db.Model):
     __tablename__ = "cart_products"
 
     id = db.Column(db.Integer(), primary_key=True)
     product_id = db.Column(db.Integer(), nullable=False)
-    cart_id = db.Column(db.Integer(), db.ForeignKey("carts.id"), nullable=False)
+    user_id = db.Column(db.Integer(), db.ForeignKey("users.id"))
     quantity = db.Column(db.Integer(), nullable=False)
 
 

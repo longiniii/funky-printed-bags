@@ -4,8 +4,25 @@
         <p>Cart</p>
     </div>
     <div id="cart-slider-products">
+        {% for product in cart %}
+        <a href="/product/{{product[0]['id']}}">
+            <!-- {{product[1]}}
+            {{product[2]}} -->
+            <div class="cart-product">
+                <div class="cart-product-image">
+                    <img src="{{product[0]['images'][0]['image']}}" alt="">
+                </div>
+                <div class="cart-product-information">
+                    <p class="cart-product-name">{{product[0]['name']}}</p>
+                    <p class="cart-product-price">${{(product[0]['cost'] - 0.01) | int * (product[1]) | int}}</p>
+                    <p class="cart-product-quantity">quantity: {{product[1]}}</p>
+                    <button class="cart-product-delete">Delete</button>
+                </div>
+            </div>
+        </a>        
+        {% endfor %}
     </div>
     <div id="view-cart-button-div">
-        <button>View Cart</button>
+        <button>Checkout</button>
     </div>
 </div>

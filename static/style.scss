@@ -134,15 +134,21 @@ html {
                     flex: 2;
                     .nav-search-product-name {
                         padding-left: 4px;
-                        padding-top: 18px;
+                        padding-top: 5px;
                         font-size: 1.2rem;
                         font-weight: 500;
                     }
                     .nav-search-product-price {
                         padding-left: 4px;
-                        padding-top: 9px;
+                        padding-top: 6px;
                         font-size: 1.2rem;
-                        font-weight: 300;
+                        font-weight: 400;
+                    }
+                    .nav-search-product-rating {
+                        padding-left: 4px;
+                        padding-top: 3px;
+                        font-size: 1.2rem;
+                        font-weight: 400;
                     }
                 }
             }
@@ -188,6 +194,49 @@ html {
     justify-content: center;
     gap: 2rem;
     background-color: $color1;
+    margin-top: 20px;
+    #no-products {
+        width: 30rem;
+        display: flex;
+        flex-flow: row wrap;
+        margin-top: 100px;
+        margin-bottom: 300px;
+        img {
+            min-height: 0;
+            min-width: 0;
+            height: 150px !important;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+        >div {
+            flex: 1;
+            position: relative;
+            h2 {
+                margin-bottom: 10px;
+            }
+            p {
+                font-size: 1.1rem;
+            }
+            a {
+                position: absolute;
+                bottom: 4px;
+                right: 2rem;
+                background-color: black;
+                color: white;
+                font-size: 1.2rem;
+                width: 100px;
+                height: 40px;
+                text-align: center;
+                line-height: 40px;
+                border-radius: 6px;
+                border: none;
+                &:hover {
+                    transition-duration: 0.3s;
+                    background-color: rgb(65, 95, 226);
+                }
+            }
+        }
+    }
     .product {
         height: 49rem;
         width: 35rem;
@@ -338,6 +387,69 @@ html {
     #cart-slider-products {
         flex: 5;
         background-color: $color1;
+        .cart-product {
+            height: 85px;
+            width: 100%;
+            display: flex;
+            flex-flow: row wrap;
+            .cart-product-image {
+                flex: 1;
+                position: relative;
+                img {
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    min-height: 0;
+                    min-width: 0;
+                    height: 80%;
+                    width: 80%;
+                    object-fit: cover;
+                    border-radius: 6px;
+                }
+            }
+            .cart-product-information {
+                flex: 3;
+                position: relative;
+                .cart-product-name {
+                    padding-left: 4px;
+                    padding-top: 5px;
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                }
+                .cart-product-price {
+                    padding-left: 4px;
+                    padding-top: 10px;
+                    font-size: 1.2rem;
+                    font-weight: 400;
+                }
+                .cart-product-quantity {
+                    padding-left: 4px;
+                    padding-top: 2px;
+                    font-size: 1.2rem;
+                    font-weight: 400;
+                }
+                .cart-product-delete {
+                    position: absolute;
+                    right: 20px;
+                    bottom: 10px;
+                    border-radius: 7px;
+                    font-size: 1.4rem;
+                    border: 2px solid $color2;
+                    background-color: $color2;
+                    color: $color1;
+                    font-weight: 600;
+                    height: 26px;
+                    width: 90px;
+                    cursor: pointer;
+                    transition-duration: 0.3s;
+                    &:hover {
+                        color: $color2;
+                        background-color: $color1;
+                    }
+                }
+            }
+        }
     }
     #view-cart-button-div {
         border-top: 1px solid rgba(0, 0, 0, 0.3);

@@ -26,7 +26,7 @@
     <div id="right">
         <input id="item-search" type="search" placeholder="search..." >
         <div id="nav-product-search-results">
-            <h3>Trending products</h3>
+            <h3>Top rated products</h3>
             {% for product in top_rated_products %}
             <a href="/product/{{product['id']}}">
                 <div class="nav-search-product">
@@ -36,6 +36,7 @@
                     <div class="nav-search-product-information">
                         <p class="nav-search-product-name">{{product['name']}}</p>
                         <p class="nav-search-product-price">${{product['cost'] - 0.01}}</p>
+                        <p class="nav-search-product-rating">{{the_average_rating(product)}}<i class="fa-solid fa-star"></i></p>
                     </div>
                 </div>
             </a>

@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect
 from forms import RegistrationForm, LoginForm, PostingProduct, ContactForm, RatingForm
 from ext import app, db, login_manager
-from models import Contact, Product, ProductColor, ProductImage, ProductImagePattern, User, Cart, CartProduct, Review
+from models import Contact, Product, ProductColor, ProductImage, ProductImagePattern, User, CartProduct, Review
 from flask_login import current_user, login_required, login_user, logout_user
 from sqlalchemy import or_
 from datetime import datetime
@@ -9,21 +9,32 @@ from datetime import datetime
 
 @app.context_processor
 def global_variable():
+    cart = []
+    for product in current_user.cart_products:
+        cart.append([Product.query.get(product.product_id), product.quantity, product.id])
+
     top_rated_products = Product.query.all()
     n = len(top_rated_products)
     for i in range(n - 1):
         for j in range(0, n - i - 1):
             if get_products_average_rating(top_rated_products[j]) < get_products_average_rating(top_rated_products[j + 1]):
                 top_rated_products[j], top_rated_products[j + 1] = top_rated_products[j + 1], top_rated_products[j]
-
-    carts = Cart.query.all()
-    return dict(top_rated_products=top_rated_products[:10],cart=carts)
+    return dict(top_rated_products=top_rated_products[:10], the_average_rating=get_products_average_rating, cart=cart)
 
 
 @app.route("/")
 def index():
-    products = Product.query.all()
-    return render_template("index.html", products=products)
+    searchterm = request.args.get('search')
+    products_length = 0
+    if searchterm != None:
+        products = Product.query.filter(Product.name.contains(searchterm.lower()))
+        products_length = products.first()
+    else:
+        products = Product.query.all()
+        products_length = len(products)
+    
+
+    return render_template("index.html", products=products, products_length = products_length)
 
 
 @app.route("/post-a-product", methods=["GET", "POST"])
@@ -72,7 +83,7 @@ def get_products_average_rating(product):
         length += 1
     if length != 0:
         average_rating = average_rating / length
-    return average_rating
+    return str(average_rating)[:3]
 
 
 @app.route("/product/<product_id>", methods=["GET", "POST"])
@@ -81,7 +92,6 @@ def product_details(product_id):
     products = Product.query.all()
     product = Product.query.get(product_id)
     rating_form = RatingForm()
-    average_rating = get_products_average_rating(product)
     if rating_form.validate_on_submit():
         product = Product.query.get(product_id)
         user = User.query.get(current_user.id)
@@ -96,7 +106,7 @@ def product_details(product_id):
                             user = user,)
         db.session.add(new_review)
         db.session.commit()
-    return render_template("product.html", products=products, product=product, average_rating=str(average_rating)[:3], rating_form=rating_form)
+    return render_template("product.html", products=products, product=product, rating_form=rating_form)
 
 
 @app.route("/delete-product/<product_id>")
@@ -216,9 +226,7 @@ def sign_up():
     if registration_form.validate_on_submit():
         if (User.query.filter(registration_form.username.data == User.username).first() == None):
             new_user = User(username=registration_form.username.data, email=registration_form.email.data, password=registration_form.password.data)
-            #new_cart = Cart(user_id=new_user.id)
             db.session.add(new_user)
-            #db.session.add(new_cart) mere daaaaaaaaaaaaaaaaaaaamateeeeeeeeeeeee
             db.session.commit()
             return redirect("/")
     return render_template("sign-up.html", registration_form=registration_form)
@@ -241,15 +249,18 @@ def log_out():
     logout_user()
     return redirect("/")
 
+
 @app.route("/api/add-to-cart", methods=['POST'])
 @login_required
 def add_to_cart():
     post_data = request.get_json()
     print(post_data['productQuantity'])
-    new_cart_product = CartProduct(product_id=post_data['productId'], quantity=post_data['productQuantity'], cart_id=current_user.id)
+    user = User.query.get(current_user.id)
+    new_cart_product = CartProduct(product_id=post_data['productId'], quantity=post_data['productQuantity'], user=user)
     db.session.add(new_cart_product)
     db.session.commit()
     return 'the product has been added, slay!'
+
 
 @app.route("/api/delete-review/<user_id>/<review_id>", methods=["DELETE"])
 @login_required
@@ -261,3 +272,10 @@ def delete_review(user_id, review_id):
         db.session.commit()
         return "the review has been deleted"
     return "current user can't delete the review"
+
+
+app.route("/api/delete-cart-product/<cart_product_id>")
+@login_required
+def delete_cart_product(cart_product_id):
+    CartProduct.query.delete(cart_product_id)
+    return "deleted cart product succesfully"
