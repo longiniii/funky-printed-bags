@@ -47,7 +47,9 @@
         {% else %}
         <a href="/sign-up"><button id="sign-up-button">Sign up</button></a>
         {% endif %}
-        <button id="nav-cart-open-button"><i class="fa-solid fa-cart-shopping"></i> Cart</button>
+        {% if current_user.is_authenticated %}
+            <button id="nav-cart-open-button"><i class="fa-solid fa-cart-shopping"></i> Cart</button>
+        {% endif %}
     </div>
 </header>
 <div style="height: 9rem; width: 100%;background-color: red;" id="header-placeholder"></div>

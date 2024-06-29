@@ -10,8 +10,9 @@ from datetime import datetime
 @app.context_processor
 def global_variable():
     cart = []
-    for product in current_user.cart_products:
-        cart.append([Product.query.get(product.product_id), product.quantity, product.id])
+    if current_user.is_authenticated:
+        for product in current_user.cart_products:
+            cart.append([Product.query.get(product.product_id), product.quantity, product.id])
 
     top_rated_products = Product.query.all()
     n = len(top_rated_products)

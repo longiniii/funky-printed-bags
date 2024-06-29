@@ -10,7 +10,9 @@
 </head>
 <body>
     {% include 'header.html' %}
-    {% include 'cart-slider.html' %}
+    {% if current_user.is_authenticated %}
+        {% include 'cart-slider.html' %}
+    {% endif %}
     {% include 'social.html'%}
 
     {% block body %}
