@@ -118,6 +118,10 @@ def delete_product(product_id):
     product = Product.query.get(product_id)
     db.session.delete(product)
     db.session.commit()
+    for cart_product in CartProduct.query.all():
+        if cart_product.product_id == product.id:
+            db.session.delete(CartProduct.query.get(cart_product.id))
+            db.session.commit()
     return redirect("/")
 
 

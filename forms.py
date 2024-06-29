@@ -37,6 +37,6 @@ class ContactForm(FlaskForm):
 
 
 class RatingForm(FlaskForm):
-    review = TextAreaField("comment something niga")
+    review = TextAreaField("leave a review")
     rating = RadioField(choices=[(1, ''), (2, ''), (3, ''), (4, ''), (5, '')], validators=[data_required()])
     submit = SubmitField("Rate")
