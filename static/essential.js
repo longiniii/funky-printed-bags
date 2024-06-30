@@ -6,6 +6,7 @@ let searchResults = document.getElementById('nav-product-search-results')
 let productsData = document.querySelectorAll('.nav-search-product')
 let searchedProducts = productsData
 let cartProductDelete = document.querySelectorAll(".cart-product-delete")
+let cartCheckout = document.getElementById("cart-checkout")
 
 navCartOpenButton.addEventListener('click', function() {
     cartSlider.style.right = '0'
@@ -69,3 +70,11 @@ cartProductDelete.forEach(item => {
         })    
     })
 });
+
+cartCheckout.addEventListener("click", function() {
+    fetch(`/api/delete-cart-product/-1`, {
+        method: "delete"
+    })
+    .then(res => res.text())
+    .then(location.reload()) 
+})

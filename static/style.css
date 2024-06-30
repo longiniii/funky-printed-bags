@@ -1372,6 +1372,8 @@ html {
 #product-information #about-the-product #price-and-more #every-image-div ul li img {
   height: 100%;
   width: 68px;
+  -o-object-fit: cover;
+     object-fit: cover;
   cursor: pointer;
 }
 #product-information #product-comment-and-rating-section {

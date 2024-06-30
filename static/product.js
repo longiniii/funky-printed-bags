@@ -39,10 +39,6 @@ remove.addEventListener('click', function() {
 addToCart.addEventListener('click', function() {
     let currentProductId;
     currentProductId = window.location.href.split('/')[window.location.href.split('/').length - 1]
-
-    cartSlider.style.right = '0'
-    cartSlider.classList.add('cart-slider-opening-animation')
-    cartSlider.classList.remove('cart-slider-closing-animation')
     fetch('/api/add-to-cart', {
         headers: {
             "Content-Type": "application/json",
@@ -56,7 +52,12 @@ addToCart.addEventListener('click', function() {
         method: 'post'
     })
     .then(res => res.text())
-    .then(data => console.log(data))
+    .then(location.reload())
+    .then(
+        //.style.right = '0',
+        //cartSlider.classList.add('cart-slider-opening-animation'),
+        //cartSlider.classList.remove('cart-slider-closing-animation')
+    )
 })
 
 ratingSubmitButton.disabled = true

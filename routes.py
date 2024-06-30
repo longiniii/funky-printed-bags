@@ -96,7 +96,6 @@ def product_details(product_id):
     if rating_form.validate_on_submit():
         product = Product.query.get(product_id)
         user = User.query.get(current_user.id)
-        print(user)
         theReview = None
         if rating_form.review.data.strip() != '':
             theReview = rating_form.review.data
@@ -259,7 +258,6 @@ def log_out():
 @login_required
 def add_to_cart():
     post_data = request.get_json()
-    print(post_data['productQuantity'])
     user = User.query.get(current_user.id)
     new_cart_product = CartProduct(product_id=post_data['productId'], quantity=post_data['productQuantity'], user=user)
     db.session.add(new_cart_product)
@@ -271,7 +269,6 @@ def add_to_cart():
 @login_required
 def delete_review(user_id, review_id):
     if current_user.id == user_id or current_user.role == "admin":
-        print(review_id)
         theReviewToBeDeleted = Review.query.get(review_id)
         db.session.delete(theReviewToBeDeleted)
         db.session.commit()
@@ -283,6 +280,13 @@ def delete_review(user_id, review_id):
 @login_required
 def delete_cart_product(cart_product_id):
     cart_product = CartProduct.query.get(cart_product_id)
+    if cart_product_id == "-1":
+        print('aee')
+        for product_of_cart in current_user.cart_products:
+            print('ooo')
+            db.session.delete(product_of_cart)
+            db.session.commit()
+        return "checkouted"
     db.session.delete(cart_product)
     db.session.commit()
     return "deleted cart product succesfully"
