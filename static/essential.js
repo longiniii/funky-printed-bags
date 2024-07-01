@@ -76,5 +76,9 @@ cartCheckout.addEventListener("click", function() {
         method: "delete"
     })
     .then(res => res.text())
-    .then(location.reload()) 
+    .then(
+        setTimeout(() => {
+            location.reload()
+        }, 200)
+    ) 
 })
