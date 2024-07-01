@@ -78,8 +78,10 @@
             <button id="add-to-cart">Add to Cart</button>
             <button id="buy-now">Buy Now</button>
             {% set id = product['id'] %}
+            {% if current_user['role'] == 'admin' %}
             <button onclick="location.assign('/delete-product/{{id}}')" id="delete">Delete</button>
             <button onclick="location.assign('/edit-product/{{id}}')" id="edit">Edit</button>
+            {% endif %}
         </div>
     </div>
     <div id="product-comment-and-rating-section">
@@ -119,10 +121,15 @@
                         <p class="date">{{date}}</p>
                     </div>
                 </div>
-                {% if review['review'] != None %}
+                {% if review['review'] is not none %}
                 <p class="review">
-                    {{ review['review']}}
+                    {{ review['review'] }}
                 </p>
+                    <!-- <div class="was-this-review-helpful">
+                        <p>Was this review helpful?</p>
+                        <button reviewId="{{ review['id'] }}" isHelpful="1" class="yes yes-or-no">Yes</button>
+                        <button reviewId="{{ review['id'] }}" isHelpful="0" class="no yes-or-no">No</button>
+                    </div> -->
                 {% endif %}
                 {% if current_user.id == review['user'].id or current_user.role == "admin" %}
                 <p reviewId="{{review['id']}}" userId="{{review['user'].id}}" class="delete-review">delete</p>

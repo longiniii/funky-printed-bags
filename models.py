@@ -62,6 +62,7 @@ class User(db.Model, UserMixin):
     role = db.Column(db.String(), nullable=True)
     cart_products = db.relationship("CartProduct", backref="user", lazy=True)
     reviews = db.relationship("Review", backref="user", lazy=True)
+    found_helpfuls = db.relationship("FoundReviewHelpful", backref="user", lazy=True)
 
     def __init__(self, username, email, password, role='guest'):
         self.username = username
@@ -93,4 +94,14 @@ class Review(db.Model):
     rating = db.Column(db.Integer(), nullable=False)
     date = db.Column(db.DateTime(), nullable=False)
     product_id = db.Column(db.Integer(), db.ForeignKey("products.id"))
+    user_id = db.Column(db.Integer(), db.ForeignKey("users.id"))
+    found_helpfuls = db.relationship("FoundReviewHelpful", backref="review", lazy=True)
+
+
+class FoundReviewHelpful(db.Model):
+    __tablename__ = "foundReviewHelpfuls"
+
+    id = db.Column(db.Integer(), primary_key=True)
+    found_helpful = db.Column(db.Boolean(), nullable=False)
+    review_id = db.Column(db.Integer(), db.ForeignKey("reviews.id"))
     user_id = db.Column(db.Integer(), db.ForeignKey("users.id"))

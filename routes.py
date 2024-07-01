@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect
 from forms import RegistrationForm, LoginForm, PostingProduct, ContactForm, RatingForm
 from ext import app, db, login_manager
-from models import Contact, Product, ProductColor, ProductImage, ProductImagePattern, User, CartProduct, Review
+from models import Contact, Product, ProductColor, ProductImage, ProductImagePattern, User, CartProduct, Review, FoundReviewHelpful
 from flask_login import current_user, login_required, login_user, logout_user
 from sqlalchemy import or_
 from datetime import datetime
@@ -290,3 +290,15 @@ def delete_cart_product(cart_product_id):
     db.session.delete(cart_product)
     db.session.commit()
     return "deleted cart product succesfully"
+
+
+@app.route("/api/was-review-helpful", methods=["POST"])
+@login_required
+def wasTheReviewHelpful():
+    post_data = request.get_json()
+    the_review = Review.query.get(post_data['reviewId'])
+    is_helpful = post_data['isHelpful']
+    new_found_review_helpful = FoundReviewHelpful(found_helpful = is_helpful, review=the_review, user=current_user)
+    db.session.add(new_found_review_helpful)
+    db.session.commit()
+    return "done"

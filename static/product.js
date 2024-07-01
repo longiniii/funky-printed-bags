@@ -8,6 +8,7 @@ let ratingLabel = document.querySelectorAll(".rating-label")
 let ratingSubmitButton = document.querySelectorAll(".rate")[0]
 let deleteReview = document.querySelectorAll(".delete-review")
 let cartSlider = document.getElementById('cart-slider')
+//let foundReviewhelpful = document.querySelectorAll(".yes-or-no")
 
 mainImage.src = images[0].src
 images[0].style.border = '2px solid black'
@@ -106,3 +107,22 @@ deleteReview.forEach(item => {
     })
 });
 
+// foundReviewhelpful.forEach(item => {
+//     item.addEventListener("click", function() {
+//         let reviewId = item.getAttribute("reviewId")
+//         let isHelpful = item.getAttribute("isHelpful")
+//         console.log(Boolean(parseInt(isHelpful)))
+//         fetch(`/api/was-review-helpful`, {
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({
+//                 reviewId: reviewId,
+//                 isHelpful: Boolean(parseInt(isHelpful))
+//             }),
+//             method: "POST"
+//         })
+//         .then(res => res.text())
+//         .then()    
+//     })
+// });
