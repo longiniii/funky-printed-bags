@@ -232,6 +232,7 @@ def sign_up():
             new_user = User(username=registration_form.username.data, email=registration_form.email.data, password=registration_form.password.data)
             db.session.add(new_user)
             db.session.commit()
+            login_user(new_user)
             return redirect("/")
     return render_template("sign-up.html", registration_form=registration_form)
 
