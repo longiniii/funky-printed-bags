@@ -34,7 +34,7 @@ products.forEach((element, index) => {
 });
 
 
-var countDownDate = new Date("Jul 03, 2024 00:00:000").getTime();
+var countDownDate = new Date("Jul 16, 2024 00:00:000").getTime();
 
 let x = setInterval(function() {
     let now = new Date().getTime();
