@@ -14,7 +14,11 @@
                 </div>
                 <div class="cart-product-information">
                     <p class="cart-product-name">{{product[0]['name']}}</p>
-                    <p class="cart-product-price">${{(product[0]['cost'] - 0.01) | int * (product[1]) | int}}</p>
+                    {% if not product[0]['how_much_discount'] %}
+                    <p class="cart-product-price">${{((product[0]['cost'] - 0.01) | float) * ((product[1]) | float)}}</p>
+                    {% else %}
+                    <p class="cart-product-price">${{((((product[0]['discounted_cost']) | float) * ((product[1]) | float)) | string)[:5]}}</p>
+                    {% endif %}
                     <p class="cart-product-quantity">quantity: {{product[1]}}</p>
                     <button cartProductId="{{product[2]}}" class="cart-product-delete">Delete</button>
                 </div>

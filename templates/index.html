@@ -29,7 +29,7 @@
             {% if product['how_much_discount'] %}
                 <div class="line-over-old-cost"></div>
             <p class="cost new-cost ">
-                ${{(((product['cost'] - 0.01) - ((product['cost'] - 0.01) * (product['how_much_discount'] / 100))) | string)[:5]}}
+                ${{(product['discounted_cost'] | string)[:5]}}
             </p>
             {% endif %}
             <button class="view">View Details</button>

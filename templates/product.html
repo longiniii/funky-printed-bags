@@ -64,7 +64,11 @@
                     {% endfor %}
                 </ul>
             </div>
+            {% if not product['how_much_discount'] %}
             <p id="price">${{product['cost'] - 0.01}}</p>
+            {% else %}
+            <p id="price">${{(product['discounted_cost'] | string)[:5]}}</p>
+            {% endif %}
             <p id="quantity-text">Quantity</p>
             <div id="quantity-div">
                 <input value="1" id="quantity" type="text">

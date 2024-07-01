@@ -5,6 +5,7 @@ data = [
         "cost": 27,
         "discount": False,
         "howMuchDiscount": None,
+        "discountedCost": None,
         "topSeller": False,
         "colors": [
             "Orange",
@@ -24,6 +25,7 @@ data = [
         "cost": 15,
         "discount": True,
         "howMuchDiscount": 27,
+        "discountedCost": 15 - (15 * (27 / 100)),
         "topSeller": False,
         "colors": [
             "Light purple",
@@ -43,6 +45,7 @@ data = [
         "cost": 24,
         "discount": False,
         "howMuchDiscount": None,
+        "discountedCost": None,
         "topSeller": True,
         "colors": [
             "Green"
@@ -60,6 +63,7 @@ data = [
         "cost": 19,
         "discount": True,
         "howMuchDiscount": 35,
+        "discountedCost": 19 - (19 * (35 / 100)),
         "topSeller": False,
         "colors": [
             "Blue"
@@ -77,6 +81,7 @@ data = [
         "cost": 30,
         "discount": False,
         "howMuchDiscount": None,
+        "discountedCost": None,
         "topSeller": False,
         "colors": [
             "Black"
@@ -94,6 +99,7 @@ data = [
         "cost": 16,
         "discount": False,
         "howMuchDiscount": None,
+        "discountedCost": None,
         "topSeller": False,
         "colors": [
             "Black"
@@ -111,6 +117,7 @@ data = [
         "cost": 22,
         "discount": False,
         "howMuchDiscount": None,
+        "discountedCost": None,
         "topSeller": True,
         "colors": [
             "Multicolor"
@@ -128,6 +135,7 @@ data = [
         "cost": 28,
         "discount": False,
         "howMuchDiscount": None,
+        "discountedCost": None,
         "topSeller": False,
         "colors": [
             "Orange"
@@ -145,6 +153,7 @@ data = [
         "cost": 17,
         "discount": True,
         "howMuchDiscount": 23,
+        "discountedCost": 17 - (17 * (23 / 100)),
         "topSeller": False,
         "colors": [
             "Purple"
@@ -162,6 +171,7 @@ data = [
         "cost": 23,
         "discount": False,
         "howMuchDiscount": None,
+        "discountedCost": None,
         "topSeller": False,
         "colors": [
             "Purple"
@@ -179,6 +189,7 @@ data = [
         "cost": 14,
         "discount": False,
         "howMuchDiscount": None,
+        "discountedCost": None,
         "topSeller": True,
         "colors": [
             "Pink"
@@ -196,6 +207,7 @@ data = [
         "cost": 29,
         "discount": False,
         "howMuchDiscount": None,
+        "discountedCost": None,
         "topSeller": False,
         "colors": [
             "Yellow"

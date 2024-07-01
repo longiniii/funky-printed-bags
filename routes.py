@@ -51,15 +51,19 @@ def post_a_product():
         images_patterns = product_posting_form.images_patterns.data.split(' ')
         hasDiscount = False
         howMuchDiscount = None
+        discountedCost = None
         if product_posting_form.how_much_discount.data > 0:
             hasDiscount = True
             howMuchDiscount = product_posting_form.how_much_discount.data
+            discountedCost = product_posting_form.cost.data - (product_posting_form.cost.data * (product_posting_form.how_much_discount.data / 100))
         new_product = Product(
             name = product_posting_form.name.data, 
             cost = product_posting_form.cost.data, 
             how_much_discount = howMuchDiscount, 
+            discounted_cost = discountedCost,
             added_by = current_user.id, 
-            edited_by = current_user.id)
+            edited_by = current_user.id
+            )
         db.session.add(new_product)
         db.session.commit()
         for color in colors:
@@ -150,12 +154,15 @@ def edit_product(product_id):
         images_patterns = product_posting_form.images_patterns.data.split(' ')
         hasDiscount = False
         howMuchDiscount = None
+        discountedCost = None
         if product_posting_form.how_much_discount.data > 0:
             hasDiscount = True
             howMuchDiscount = product_posting_form.how_much_discount.data
+            discountedCost = product_posting_form.cost.data - (product_posting_form.cost.data * (product_posting_form.how_much_discount.data / 100))
         product.name = product_posting_form.name.data
         product.cost = product_posting_form.cost.data
         product.how_much_discount = howMuchDiscount
+        product.discounted_cost = discountedCost
         product.added_by = product.id
         product.edited_by = current_user.id
         # delete

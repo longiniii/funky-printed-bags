@@ -17,7 +17,7 @@ with app.app_context():
     db.session.commit()
 
     for product in data:
-        new_product = Product(name=product['name'],cost=product['cost'], how_much_discount=product['howMuchDiscount'], added_by=1,edited_by=1)
+        new_product = Product(name=product['name'],cost=product['cost'], how_much_discount=product['howMuchDiscount'], discounted_cost=product['discountedCost'], added_by=1,edited_by=1)
         db.session.add(new_product)
         db.session.commit()
         for color in product['colors']:

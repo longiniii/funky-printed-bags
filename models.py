@@ -23,6 +23,7 @@ class Product(db.Model):
     name = db.Column(db.String(), nullable=False)
     cost = db.Column(db.Integer(), nullable=False)
     how_much_discount = db.Column(db.Integer())
+    discounted_cost = db.Column(db.Integer())
     added_by = db.Column(db.Integer(), nullable=False)
     edited_by = db.Column(db.Integer(), nullable=False)
     colors = db.relationship("ProductColor", backref="product", lazy=True)
