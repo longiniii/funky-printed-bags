@@ -20,6 +20,7 @@ def global_variable():
         for j in range(0, n - i - 1):
             if get_products_average_rating(top_rated_products[j]) < get_products_average_rating(top_rated_products[j + 1]):
                 top_rated_products[j], top_rated_products[j + 1] = top_rated_products[j + 1], top_rated_products[j]
+    top_rated_products = list(filter(lambda n: float(get_products_average_rating(n)) > 0, top_rated_products))
     return dict(top_rated_products=top_rated_products[:10], the_average_rating=get_products_average_rating, cart=cart)
 
 

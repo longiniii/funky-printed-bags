@@ -14,8 +14,8 @@
     {% for product in products %}
     <a href="/product/{{product['id']}}"><div class="product">
         <div class="image-div">
-            {% if product['topSeller'] %}
-            <div class="top-seller"><p>Top Seller</p></div>
+            {% if product in top_rated_products %}
+            <div class="top-seller"><p>Top Rated</p></div>
             {% endif %}
             <img class="product-image" src="{{product['images'][0]['image']}}" alt="">
             <img class="image-pattern" class="product-image" src="{{product['image_patterns'][0]['image_pattern']}}" alt="">
