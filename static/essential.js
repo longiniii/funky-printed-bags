@@ -8,18 +8,21 @@ let searchedProducts = productsData
 let cartProductDelete = document.querySelectorAll(".cart-product-delete")
 let cartCheckout = document.getElementById("cart-checkout")
 
-navCartOpenButton.addEventListener('click', function() {
-    cartSlider.style.right = '0'
-    cartSlider.classList.add('cart-slider-opening-animation')
-    cartSlider.classList.remove('cart-slider-closing-animation')
-})
 
-navCartCloseButton.addEventListener('click', function() {
-    cartSlider.style.right = '-30rem'
-    cartSlider.classList.add('cart-slider-closing-animation')
-    cartSlider.classList.remove('cart-slider-opening-animation')
-})
-
+if (navCartOpenButton != null) { // incase user is not logged in and doe snot have a cart
+    navCartOpenButton.addEventListener('click', function() {
+        cartSlider.style.right = '0'
+        cartSlider.classList.add('cart-slider-opening-animation')
+        cartSlider.classList.remove('cart-slider-closing-animation')
+    })
+    
+    navCartCloseButton.addEventListener('click', function() {
+        cartSlider.style.right = '-30rem'
+        cartSlider.classList.add('cart-slider-closing-animation')
+        cartSlider.classList.remove('cart-slider-opening-animation')
+    })
+    
+}
 
 
 
@@ -58,27 +61,31 @@ let checkIfFocused = () => {
     }, 20);
 }
 
-cartProductDelete.forEach(item => {
-    item.addEventListener("click", function() {
-        let cartProductId = item.getAttribute("cartProductId")
-        fetch(`/api/delete-cart-product/${cartProductId}`, {
+
+if (cartProductDelete != null) { // incase user is not logged in and doe snot have a cart
+    cartProductDelete.forEach(item => {
+        item.addEventListener("click", function() {
+            let cartProductId = item.getAttribute("cartProductId")
+            fetch(`/api/delete-cart-product/${cartProductId}`, {
+                method: "delete"
+            })
+            .then(res => res.text())
+            .then(data => {
+                item.parentElement.parentElement.style.display = "none"
+            })    
+        })
+    });
+}
+if (cartCheckout != null) { // incase user is not logged in and doe snot have a cart
+    cartCheckout.addEventListener("click", function() {
+        fetch(`/api/delete-cart-product/-1`, {
             method: "delete"
         })
         .then(res => res.text())
-        .then(data => {
-            item.parentElement.parentElement.style.display = "none"
-        })    
+        .then(
+            setTimeout(() => {
+                location.reload()
+            }, 200)
+        ) 
     })
-});
-
-cartCheckout.addEventListener("click", function() {
-    fetch(`/api/delete-cart-product/-1`, {
-        method: "delete"
-    })
-    .then(res => res.text())
-    .then(
-        setTimeout(() => {
-            location.reload()
-        }, 200)
-    ) 
-})
+}
