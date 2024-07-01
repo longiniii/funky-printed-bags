@@ -333,6 +333,18 @@ html {
   color: var(--color1);
   background-color: var(--color2);
 }
+#store .product .text .line-over-old-cost {
+  position: absolute;
+  left: 171px;
+  top: 49px;
+  height: 2.5px;
+  width: 78px;
+  rotate: 20deg;
+  background-color: red;
+}
+#store .product .text .new-cost {
+  top: 43%;
+}
 
 #social {
   z-index: 30;

@@ -340,6 +340,18 @@ html {
                     background-color: $color2;
                 }
             }
+            .line-over-old-cost {
+                position: absolute;
+                left: 171px;
+                top: 49px;
+                height: 2.5px;
+                width: 78px;
+                rotate: 20deg;
+                background-color: red;
+            }
+            .new-cost {
+                top: 43%;
+            }
         }
     }
 }

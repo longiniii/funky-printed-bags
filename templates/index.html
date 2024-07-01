@@ -19,13 +19,19 @@
             {% endif %}
             <img class="product-image" src="{{product['images'][0]['image']}}" alt="">
             <img class="image-pattern" class="product-image" src="{{product['image_patterns'][0]['image_pattern']}}" alt="">
-            {% if product['discount'] %}
+            {% if product['how_much_discount'] %}
             <div class="discount"><p>Discount!!</p></div>
             {% endif %}
         </div>
         <div class="text">
             <p class="name">{{product['name']}}</p>
             <p class="cost">${{product['cost'] - 0.01}}</p>
+            {% if product['how_much_discount'] %}
+                <div class="line-over-old-cost"></div>
+            <p class="cost new-cost ">
+                ${{(((product['cost'] - 0.01) - ((product['cost'] - 0.01) * (product['how_much_discount'] / 100))) | string)[:5]}}
+            </p>
+            {% endif %}
             <button class="view">View Details</button>
         </div>
     </div></a>
