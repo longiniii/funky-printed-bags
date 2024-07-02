@@ -13,8 +13,10 @@ let hours = document.getElementById('h-hours')
 let minutes = document.getElementById('m-minutes')
 let seconds = document.getElementById('s-seconds')
 let search = document.getElementById('item-search')
+let pages = document.querySelectorAll(".page")
 
 let bags;
+
 products.forEach((element, index) => {
     element.addEventListener('mouseover', function() {
         productImages[index].style.display = 'none'
@@ -53,3 +55,23 @@ let x = setInterval(function() {
         seconds.innerText = Math.floor((distance % (1000 * 60)) / 1000);
     }
 }, 1000);
+
+
+let url = new URL(window.location.href);
+let params = new URLSearchParams(url.search);
+let page = params.get("page")
+pages.forEach(item => {
+    item.addEventListener("click", function() {
+        console.log(url)
+        params.set('page', item.innerText);
+        url.search = params.toString();
+        window.location = url.href
+    })
+    if (page == item.innerText) {
+        item.style.backgroundColor = "black";
+        item.style.color = "white"
+    } else if (page == null) {
+        pages[0].style.backgroundColor = "black"
+        pages[0].style.color = "white"
+    }
+});

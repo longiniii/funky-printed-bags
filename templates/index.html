@@ -37,6 +37,15 @@
     </div></a>
     {% endfor %}
 </section>
+{% if products_length != None %}
+<section id="products-pages">
+    {% for num in range((((products_length / 12)) | round(0, 'ceil')) | int)  %}
+    <button class="page">
+        {{num + 1}}
+    </button>
+    {% endfor %}
+</section>
+{% endif %}
 <section id="time-left">
     <h2 id="time-left-main">TIME LEFT UNTIL OUR <span id="time-left-span">BIGGEST SALE OF THE YEAR BEGINS</span></h2>
     <div class="time-left-time" id="days">

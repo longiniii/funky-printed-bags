@@ -326,7 +326,7 @@ html {
                 position: absolute;
                 left: 50%;
                 transform: translate(-50%,0);
-                top: 55%;
+                top: 56%;
                 font-size: 1.5rem;
                 height: 3.3rem;
                 width: 10rem;
@@ -350,9 +350,27 @@ html {
                 background-color: red;
             }
             .new-cost {
-                top: 43%;
+                top: 42%;
             }
         }
+    }
+}
+#products-pages {
+    margin: auto;
+    width: 500px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    gap: 10px;
+    .page {
+        height: 50px;
+        width: 50px;
+        border: 2px solid black;
+        border-radius: 4px;
+        background-color: transparent;
+        font-size: 21px;
+        cursor: pointer;
     }
 }
 #social {

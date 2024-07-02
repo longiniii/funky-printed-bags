@@ -27,16 +27,19 @@ def global_variable():
 @app.route("/")
 def index():
     searchterm = request.args.get('search')
+    page = request.args.get("page")
+    if page == None:
+        page = 1
+    else:
+        page = int(page)
     products_length = 0
     if searchterm != None:
         products = Product.query.filter(Product.name.contains(searchterm.lower()))
-        products_length = products.first()
+        products_length = len(list(products))
     else:
         products = Product.query.all()
         products_length = len(products)
-    
-
-    return render_template("index.html", products=products, products_length = products_length)
+    return render_template("index.html", products=products[(page - 1) * 12 : page * 12], products_length = products_length)
 
 
 @app.route("/post-a-product", methods=["GET", "POST"])

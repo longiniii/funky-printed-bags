@@ -218,5 +218,169 @@ data = [
         "images_patterns": [
             "https://static.wixstatic.com/media/45d10e_85b84e09e8964627bcb095a52463344e~mv2_d_3500_1968_s_2.jpg/v1/fill/w_541,h_541,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/45d10e_85b84e09e8964627bcb095a52463344e~mv2_d_3500_1968_s_2.jpg"
         ]
-    }
+    },
+        {
+        "id": 13,
+        "name": "Rhombus",
+        "cost": 15,
+        "discount": False,
+        "howMuchDiscount": None,
+        "discountedCost": None,
+        "topSeller": False,
+        "colors": [
+            "Brown"
+        ],
+        "images": [
+            "https://img.getimg.ai/generated/img-fA7O26BxO5vbQ9GVMj4Ly.jpeg"
+        ],
+        "images_patterns": [
+            "https://img.getimg.ai/generated/img-6wMP8KyCUO4GQ1yEBKAte.jpeg"
+        ]
+    },
+            {
+        "id": 14,
+        "name": "Yellow bones",
+        "cost": 12,
+        "discount": False,
+        "howMuchDiscount": None,
+        "discountedCost": None,
+        "topSeller": False,
+        "colors": [
+            "Yellow"
+        ],
+        "images": [
+            "https://img.getimg.ai/generated/img-LqPO8J62pSRTUqmkWZBKZ.jpeg"
+        ],
+        "images_patterns": [
+            "https://img.getimg.ai/generated/img-J6nByUljmsEkqKSkChGp4.jpeg"
+        ]
+    },
+            {
+        "id": 15,
+        "name": "Elle",
+        "cost": 15,
+        "discount": True,
+        "howMuchDiscount": 10,
+        "discountedCost": 15 - (15 * (10 / 100)),
+        "topSeller": False,
+        "colors": [
+            "Pink"
+        ],
+        "images": [
+            "https://img.getimg.ai/generated/img-0k2YcGeC4k5G4wI3nCFke.jpeg"
+        ],
+        "images_patterns": [
+            "https://img.getimg.ai/generated/img-4fEQO9euJTK2s7KMmsKTG.jpeg"
+        ]
+    },
+        {
+        "id": 16,
+        "name": "Black rhombus",
+        "cost": 14,
+        "discount": False,
+        "howMuchDiscount": None,
+        "discountedCost": None,
+        "topSeller": False,
+        "colors": [
+            "black"
+        ],
+        "images": [
+            "https://img.getimg.ai/generated/img-rnxoPNrhps8kwZPJARsw6.jpeg"
+        ],
+        "images_patterns": [
+            "https://img.getimg.ai/generated/img-sf11Nj2ZekDIc8GJkzoQ7.jpeg"
+        ]
+    },
+        {
+        "id": 17,
+        "name": "Camera",
+        "cost": 25,
+        "discount": False,
+        "howMuchDiscount": None,
+        "discountedCost": None,
+        "topSeller": False,
+        "colors": [
+            "Pink"
+        ],
+        "images": [
+            "https://img.getimg.ai/generated/img-N43Ot2CQQX9QfHrnL3bGT.jpeg"
+        ],
+        "images_patterns": [
+            "https://img.getimg.ai/generated/img-MRnvZ2lw53xr28f35vD37.jpeg"
+        ]
+    },
+        {
+        "id": 18,
+        "name": "letters",
+        "cost": 17,
+        "discount": False,
+        "howMuchDiscount": None,
+        "discountedCost": None,
+        "topSeller": False,
+        "colors": [
+            "white"
+        ],
+        "images": [
+            "https://img.getimg.ai/generated/img-2jWWzXcGAZQS4eo1rISZM.jpeg",
+            "https://img.getimg.ai/generated/img-ZxDEp4QlkcfHyN6eyoQQq.jpeg"
+        ],
+        "images_patterns": [
+            "https://img.getimg.ai/generated/img-ImkjMVXrBYIE55KRNYDug.jpeg"
+        ]
+    },
+        {
+        "id": 19,
+        "name": "Stones",
+        "cost": 19,
+        "discount": False,
+        "howMuchDiscount": None,
+        "discountedCost": None,
+        "topSeller": False,
+        "colors": [
+            "Pink"
+        ],
+        "images": [
+            "https://img.getimg.ai/generated/img-sAfqmVjxX5ygrVG3x4U8b.jpeg"
+        ],
+        "images_patterns": [
+            "https://img.getimg.ai/generated/img-1XpVCu07lO8sHjMfHdVrK.jpeg"
+        ]
+    },
+        {
+        "id": 20,
+        "name": "Hands",
+        "cost": 20,
+        "discount": True,
+        "howMuchDiscount": 30,
+        "discountedCost": 17 - (17 * (23 / 100)),
+        "topSeller": False,
+        "colors": [
+            "black"
+        ],
+        "images": [
+            "https://img.getimg.ai/generated/img-DYwwn5XgfH2cdxT1OQDBA.jpeg"
+        ],
+        "images_patterns": [
+            "https://img.getimg.ai/generated/img-rk4aKB7dmn36xMlpeE8fZ.jpeg",
+            "https://img.getimg.ai/generated/img-zOpEtj1gL0vv0lX7l5vOI.jpeg"
+        ]
+    },
+            {
+        "id": 21,
+        "name": "Spots",
+        "cost": 15,
+        "discount": False,
+        "howMuchDiscount": None,
+        "discountedCost": None,
+        "topSeller": False,
+        "colors": [
+            "white"
+        ],
+        "images": [
+            "https://img.getimg.ai/generated/img-qXFs15UQly3XnaUpLfHlT.jpeg"
+        ],
+        "images_patterns": [
+            "https://img.getimg.ai/generated/img-oGkul1UXYaFTqno0QwpV6.jpeg"
+        ]
+    },
 ]
