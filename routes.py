@@ -88,7 +88,7 @@ def get_products_average_rating(product):
     average_rating = 0
     length = 0
     for review in product.reviews:
-        average_rating += review.rating
+        average_rating += int(review.rating)
         length += 1
     if length != 0:
         average_rating = average_rating / length
@@ -104,16 +104,34 @@ def product_details(product_id):
     if rating_form.validate_on_submit():
         product = Product.query.get(product_id)
         user = User.query.get(current_user.id)
+        review = None
+        for userRev in user.reviews:
+            for prodRev in product.reviews:
+                if prodRev.id == userRev.id:
+                    review = Review.query.get(prodRev.id)
+                    break
+            if (review != None):
+                break
         theReview = None
         if rating_form.review.data.strip() != '':
             theReview = rating_form.review.data
-        new_review = Review(review = theReview,
+        if review == None:
+            new_review = Review(review = theReview,
                             rating = rating_form.rating.data,
                             date = datetime.now(),
                             product = product,
-                            user = user,)
-        db.session.add(new_review)
-        db.session.commit()
+                            user = user)
+            db.session.add(new_review)
+            db.session.commit()
+        else:
+            review.review = theReview
+            review.rating = rating_form.rating.data
+            review.date = datetime.now()
+            review.product = product
+            review.user = user
+            db.session.commit()
+
+
     return render_template("product.html", products=products, product=product, rating_form=rating_form)
 
 
@@ -280,7 +298,7 @@ def add_to_cart():
 @app.route("/api/delete-review/<user_id>/<review_id>", methods=["DELETE"])
 @login_required
 def delete_review(user_id, review_id):
-    if current_user.id == user_id or current_user.role == "admin":
+    if current_user.id == int(user_id) or current_user.role == "admin":
         theReviewToBeDeleted = Review.query.get(review_id)
         db.session.delete(theReviewToBeDeleted)
         db.session.commit()
