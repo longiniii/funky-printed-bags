@@ -8,6 +8,7 @@ let ratingLabel = document.querySelectorAll(".rating-label")
 let ratingSubmitButton = document.querySelectorAll(".rate")[0]
 let deleteReview = document.querySelectorAll(".delete-review")
 let cartSlider = document.getElementById('cart-slider')
+let buy = document.getElementById("buy-now")
 //let foundReviewhelpful = document.querySelectorAll(".yes-or-no")
 
 mainImage.src = images[0].src
@@ -34,7 +35,7 @@ add.addEventListener('click', function() {
 })
 
 remove.addEventListener('click', function() {
-    quantity.value = Number(quantity.value) - 1
+    if (quantity.value > 1) quantity.value = Number(quantity.value) - 1
 })
 
 addToCart.addEventListener('click', function() {
@@ -126,3 +127,7 @@ deleteReview.forEach(item => {
 //         .then()    
 //     })
 // });
+
+buy.addEventListener("click", function() {
+    location.reload()
+})
