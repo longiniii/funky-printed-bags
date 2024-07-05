@@ -19,7 +19,6 @@ html {
 }
 
 #header {
-  position: fixed;
   top: 0px;
   z-index: 30;
   height: 9rem;

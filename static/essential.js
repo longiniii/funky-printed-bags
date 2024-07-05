@@ -7,6 +7,8 @@ let productsData = document.querySelectorAll('.nav-search-product')
 let searchedProducts = productsData
 let cartProductDelete = document.querySelectorAll(".cart-product-delete")
 let cartCheckout = document.getElementById("cart-checkout")
+let header = document.getElementById("header")
+let headerPlaceholder = document.getElementById("header-placeholder")
 
 
 if (navCartOpenButton != null) { // incase user is not logged in and doe snot have a cart
@@ -24,6 +26,35 @@ if (navCartOpenButton != null) { // incase user is not logged in and doe snot ha
     
 }
 
+let lastScrollY = 0
+let scrolledUp = false
+addEventListener("scroll", function(e){
+    if (window.scrollY + 100 < lastScrollY ) {
+        if (!scrolledUp) {
+            scrolledUp = true
+            header.style.position = "fixed"
+            header.style.top = "-100px"
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            async function moveHeader() {
+                while (parseInt(header.style.top.split("px")[0]) < 0) {
+                    let scrolling = true
+                    await sleep(1);
+                    header.style.top = (parseInt(header.style.top.split("px")[0]) + 2) + "px";
+                }
+            }
+            moveHeader();
+            headerPlaceholder.style.display = "block"
+        }
+        lastScrollY = window.scrollY
+    } else if (window.scrollY > lastScrollY) {
+        scrolledUp = false
+        header.style.position = "static"
+        headerPlaceholder.style.display = "none"
+        lastScrollY = window.scrollY
+    }
+})
 
 
 
