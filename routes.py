@@ -271,7 +271,7 @@ def log_in():
     log_in_form = LoginForm()
     if log_in_form.validate_on_submit():
         user = User.query.filter(or_(log_in_form.username_or_email.data == User.username, log_in_form.username_or_email.data == User.email)).first()
-        if (user != None) & User.check_password(user, log_in_form.password.data):
+        if (user != None) and (User.check_password(user, log_in_form.password.data)):
             login_user(user)
             return redirect("/")
     return render_template("log-in.html", log_in_form=log_in_form)
